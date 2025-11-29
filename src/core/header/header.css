@@ -25,10 +25,8 @@
 #logo-ecommerce-header {
     width: 48px;
     height: 48px;
-    border-radius: 50%; /* Deixa a imagem redonda */
-    object-fit: cover;
-    /* Caso a imagem não carregue, isso simula o fundo azul da demo */
-    background-color: #1a56db; 
+    /*border-radius: 50%; /* Deixa a imagem redonda */
+    /*object-fit: cover;*/
 }
 
 #nome-desc-ecommerce-header {
