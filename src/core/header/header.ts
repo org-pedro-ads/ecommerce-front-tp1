@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from '../../app/app/feature/user/user';
 
 @Component({
   selector: 'app-header',
@@ -7,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrl: './header.css',
 })
 export class Header {
-
+  logoUrl: string;
+  nomeEcommerce: string;
+  descEcommerce: string;
+  user: User;
+  
+  constructor() {
+    this.logoUrl = 'default-logo-url';
+    this.nomeEcommerce = 'Default Ecommerce Name';
+    this.descEcommerce = 'Default Ecommerce Description';
+    this.user = new User();
+  }
 }
