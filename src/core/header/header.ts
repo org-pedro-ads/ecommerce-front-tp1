@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User } from '../../app/app/feature/user/user';
+import { User } from '../../app/user/user';
 
 @Component({
   selector: 'app-header',
