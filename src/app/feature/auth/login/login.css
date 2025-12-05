@@ -1,0 +1,152 @@
+/* ===== GLOBAL FIX ===== */
+* {
+    box-sizing: border-box;
+  }
+  
+  /* ===== CONTAINER PRINCIPAL ===== */
+  .login-container {
+    min-height: 100vh;
+    padding: 40px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f7f9fc;
+  }
+  
+  /* ===== WRAPPER ===== */
+  .login-box {
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+  }
+  
+  /* ===== HEADER ===== */
+  .icon-header {
+    margin-bottom: 32px;
+  }
+  
+  .icon-circle {
+    width: 70px;
+    height: 70px;
+    background: #1a73e8;
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 16px auto;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+  
+  .icon-circle i {
+    color: white;
+    font-size: 32px;
+  }
+  
+  .icon-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin-bottom: 4px;
+  }
+  
+  .icon-header p {
+    color: #666;
+  }
+  
+  /* ===== CARD ===== */
+  .login-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 32px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
+  }
+  
+  /* ===== FORM ===== */
+  .form-group {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 6px;
+    color: #1e1e1e;
+    font-weight: 600;
+  }
+  
+  input,
+  select {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    background: #f5f6fa;
+    transition: 0.2s;
+    font-size: 15px;
+  }
+  
+  input:focus,
+  select:focus {
+    border-color: #1a73e8;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+  }
+  
+  /* ===== BUTTONS ===== */
+  .buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  
+  button {
+    flex: 1;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  /* BTN AZUL */
+  .btn-primary {
+    background-color: #1a73e8;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: #1259b5;
+  }
+  
+  /* BTN CINZA */
+  .btn-secondary {
+    background: #f0f0f5;
+    color: #444;
+  }
+  
+  .btn-secondary:hover {
+    background: #e5e5ea;
+  }
+  
+  /* ===== LINK CADASTRO ===== */
+  .register-link {
+    margin-top: 24px;
+  }
+  
+  .register-link a {
+    color: #1a73e8;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+  
