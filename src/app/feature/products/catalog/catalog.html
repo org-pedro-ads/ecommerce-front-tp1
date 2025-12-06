@@ -1,19 +1,109 @@
 <app-header></app-header>
 
-@if(loading()) {
-  <p>Carregando produtos...</p>
-} @else if (listProducts().length === 0) {
-  <p>Nenhum produto disponível.</p>
-} @else {
-  <div class="product-list">
-    @for (product of listProducts(); track product.id) {
-      <div class="product-item">
-        <h2>{{ product.nome }}</h2>
-        <p>{{ product.descricao }}</p>
-        <p>Preço: R$ {{ product.preco.toFixed(2) }}</p>
+<div class="layout-container">
+  
+  <aside class="sidebar">
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active">
+        <i class="lucide lucide-store"></i> 
+        <span>Catálogo</span>
+      </a>
+      
+      <a href="#" class="nav-item">
+        <i class="lucide lucide-shopping-cart"></i>
+        <span>Carrinho</span>
+      </a>
+
+      <a href="#" class="nav-item">
+        <i class="lucide lucide-clipboard-list"></i>
+        <span>Meus Pedidos</span>
+      </a>
+
+      <a href="#" class="nav-item">
+        <i class="lucide lucide-user"></i>
+        <span>Meu Perfil</span>
+      </a>
+
+      <div class="nav-divider"></div>
+
+      <a href="#" class="nav-item">
+        <i class="lucide lucide-plus"></i>
+        <span>Cadastrar Produtos</span>
+      </a>
+
+      <a href="#" class="nav-item">
+        <i class="lucide lucide-settings"></i>
+        <span>Gerenciar Produtos</span>
+      </a>
+    </nav>
+  </aside>
+
+  <main class="content-area">
+    
+    <header class="page-header">
+      <div class="header-titles">
+        <div class="breadcrumb">
+          <i class="lucide lucide-settings-2"></i> <span>Gerenciar Produtos</span>
+        </div>
+        <h1>Catálogo de Produtos</h1>
+        <p>Explore nossa seleção completa</p>
       </div>
-    }
-  </div>
-}
+    </header>
+
+    <section class="filters-container">
+      
+      <div class="search-box">
+        <i class="lucide lucide-search"></i>
+        <input type="text" placeholder="Buscar produtos..." />
+      </div>
+
+      <div class="category-box">
+        <select>
+          <option value="todas">Todas as categorias</option>
+          <option value="eletronicos">Eletrônicos</option>
+          <option value="roupas">Roupas</option>
+        </select>
+      </div>
+
+      <div class="results-bar">
+        <span class="results-count">
+          {{ listProducts().length }} produtos encontrados
+        </span>
+        
+        <div class="sort-box">
+          <select>
+            <option>Ordenar por: Nome</option>
+            <option>Ordenar por: Preço Menor</option>
+            <option>Ordenar por: Preço Maior</option>
+          </select>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="products-section">
+      
+      @if(loading()) {
+        <div class="state-container">
+          <div class="spinner"></div> <p>Carregando produtos...</p>
+        </div>
+
+      } @else if (listProducts().length === 0) {
+        <div class="state-container">
+          <p>Nenhum produto disponível.</p>
+        </div>
+
+      } @else {
+        <div class="product-grid">
+          @for (product of listProducts(); track product.id) {
+            <app-card-product [product]="product"></app-card-product>
+          }
+        </div>
+      }
+
+    </section>
+
+  </main>
+</div>
 
 <app-footer></app-footer>

@@ -5,10 +5,11 @@ import { ProductService } from '../../../core/services/product/product.service';
 import { Header } from "../../../core/header/header";
 import { Footer } from "../../../core/footer/footer";
 import { finalize } from 'rxjs';
+import { CardProduct } from '../card-product/card-product';
 
 @Component({
   selector: 'app-catalog',
-  imports: [Header, Footer],
+  imports: [Header, Footer, CardProduct],
   templateUrl: './catalog.html',
   styleUrl: './catalog.css',
 })
