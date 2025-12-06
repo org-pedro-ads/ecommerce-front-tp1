@@ -25,10 +25,12 @@
     <div class="form-group">
       <label>Categoria *</label>
       <select formControlName="categoria">
-        <option value="">Selecione</option>
-        <option value="Eletrônicos">Eletrônicos</option>
+      <option value="Eletrônicos">Eletrônicos</option>
         <option value="Roupas">Roupas</option>
-        <option value="Acessórios">Acessórios</option>
+        <option value="Alimentos">Alimentos</option>
+        <option value="Esporte">Esporte</option>
+        <option value="Moveis">Moveis</option>
+        <option value="Livros">Livros</option>
       </select>
       @if(submitted() && form.get('categoria')?.invalid) {
         <div class="error">Categoria é obrigatória.</div>

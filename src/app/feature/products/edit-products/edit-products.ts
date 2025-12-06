@@ -82,12 +82,13 @@ export class EditProducts {
         ?.map((c: string) => c.trim())
     };
 
+    console.log('atualizando >>>>>>>>>>>>>>>>>>>>>>>>>>>', produto)
+
     this.productsService.atualizar(this.productId, produto).subscribe({
       next: () => {
-        alert('Produto atualizado com sucesso!');
         this.isSubmitting.set(false);
         this.submitted.set(false);
-        this.router.navigate(['/produtos']);
+        this.router.navigate(['/products']);
       },
       error: (err) => {
         console.error('Erro ao atualizar produto:', err);

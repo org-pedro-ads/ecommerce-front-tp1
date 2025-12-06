@@ -31,9 +31,16 @@ export class ListProducts {
   }
 
   remove(id: number) {
-    // if (confirm('Tem certeza que deseja remover este produto?')) {
-    //   this.produtosService.remover(id);
-    //   this.products = this.produtosService.listar();
-    // }
+    if (confirm('Tem certeza que deseja remover este produto?')) {
+      this.produtosService.remover(id).subscribe({
+        next: () => {
+          this.products = this.products.filter(p => p.id !== id);
+          console.log('Produto removido com sucesso');
+        },
+        error: (err) => {
+          console.error('Erro ao remover produto:', err);
+        }
+      });
+    }
   }
 }

@@ -36,11 +36,12 @@ export class ProductsService {
     return this.http.get<Produto>(`${this.apiUrl}/${id}`);
   }
 
-  atualizar(id: number, produto: Partial<Produto>) {
-    return this.http.get<Produto>(`${this.apiUrl}/${id}`);
+  atualizar(id: number, produto: Partial<Produto>): Observable<Produto> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put<Produto>(`${this.apiUrl}/${id}`, produto, { headers });
   }
 
-  remover(id: number) {
-    this.products = this.products.filter(p => p.id !== id);
+  remover(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

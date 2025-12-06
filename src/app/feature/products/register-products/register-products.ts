@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { ProductsService, Produto } from '../products.service';
 import { Header } from '../../../core/header/header';
 import { Footer } from '../../../core/footer/footer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-products',
@@ -13,17 +14,9 @@ import { Footer } from '../../../core/footer/footer';
 export class RegisterProducts {
   isSubmitting = signal(false);
   submitted = signal(false);
+  private router = inject(Router);
   private productsService = inject(ProductsService);
   private fb = inject(FormBuilder)
-
-  // form: FormGroup = this.fb.nonNullable.group({
-  //   nome: new FormControl(''),
-  //   categoria: new FormControl(''),
-  //   preco: new FormControl(0),
-  //   quantidadeEstoque: new FormControl(0),
-  //   descricao: new FormControl(''),
-  //   caracteristicas: new FormControl('') 
-  // });
 
   form: FormGroup = this.fb.nonNullable.group({
     nome: new FormControl('', Validators.required),
@@ -56,10 +49,10 @@ export class RegisterProducts {
       categoria: this.form.value.categoria ? this.categoriaMap?.[this.form.value.categoria] : '',
       preco: this.form.value.preco,
       quantidadeEstoque: this.form.value.quantidadeEstoque,
-      descricao: this.form.value.descricao
-      // caracteristicas: this.form.value?.caracteristicas
-      //   ?.split(',')
-      //   ?.map((c: string) => c.trim())
+      descricao: this.form.value.descricao,
+      caracteristicas: this.form.value?.caracteristicas
+        ?.split(',')
+        ?.map((c: string) => c.trim())
     };
 
     this.productsService.cadastrar(produto).subscribe({
@@ -74,6 +67,8 @@ export class RegisterProducts {
 
         this.isSubmitting.set(false);
         this.submitted.set(false);
+
+        this.router.navigate(['/products']);
       },
       error: (err) => {
         console.error('Erro ao cadastrar produto:', err);
