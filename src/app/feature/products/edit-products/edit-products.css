@@ -42,14 +42,6 @@
   margin-bottom: 20px;
 }
 
-input, textarea, select {
-  width: 100%;
-  padding: 14px;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  background: #f5f6fa;
-}
-
 /* ===== BOTÕES ===== */
 .buttons {
   display: flex;
@@ -86,4 +78,30 @@ button {
 }
 .btn-secondary:hover {
   background: #e5e5ea;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: #f5f6fa;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #1a73e8;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #1e1e1e;
+  font-size: 15px;
 }
