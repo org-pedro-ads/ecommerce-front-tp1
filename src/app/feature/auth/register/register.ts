@@ -4,10 +4,11 @@ import { Header } from "../../../core/header/header"
 import { Footer } from "../../../core/footer/footer";
 import { CommonModule } from '@angular/common';
 import { User, tipoUsuarioEnum } from '../../../models/user'
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-register',
-  imports: [Header, Footer,CommonModule, FormsModule],
+  imports: [Header, Footer, CommonModule, FormsModule, RouterLink],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
