@@ -60,7 +60,7 @@ export class EditProducts {
       error: (err) => {
         console.error('Erro ao carregar produto:', err);
         alert('Erro ao carregar produto.');
-        this.router.navigate(['product-management/edit-products']);
+        this.router.navigate(['/products/product-management/edit-products']);
       }
     });
   }
@@ -86,7 +86,7 @@ export class EditProducts {
       next: () => {
         this.isSubmitting.set(false);
         this.submitted.set(false);
-        this.router.navigate(['/product-management/list']);
+        this.router.navigate(['/products/product-management/list']);
       },
       error: (err) => {
         console.error('Erro ao atualizar produto:', err);

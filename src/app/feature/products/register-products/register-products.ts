@@ -68,7 +68,7 @@ export class RegisterProducts {
         this.isSubmitting.set(false);
         this.submitted.set(false);
 
-        this.router.navigate(['product-management/list']);
+        this.router.navigate(['/products/product-management/list']);
       },
       error: (err) => {
         console.error('Erro ao cadastrar produto:', err);
