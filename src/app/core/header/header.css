@@ -1,121 +1,132 @@
-/* Reset básico para garantir que as fontes e margens funcionem bem */
+/* Reset básico */
 * {
     box-sizing: border-box;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 /* --- Container Principal --- */
 #header-section {
     display: flex;
-    align-items: center; /* Centraliza verticalmente */
+    align-items: center;
+    justify-content: space-between; /* Empurra esquerda e direita para os extremos */
     width: 100%;
-    height: 80px; /* Altura aproximada do header */
-    padding: 0 40px; /* Espaçamento lateral */
+    height: 70px;
+    padding: 0 32px;
     background-color: #ffffff;
-    border-bottom: 1px solid #e5e7eb; /* Borda sutil na parte inferior */
+    border-bottom: 1px solid #f3f4f6; /* Borda bem sutil */
 }
 
-/* --- Grupo da Esquerda (Logo + Texto) --- */
-.logo-nome-ecommerce {
+/* --- LADO ESQUERDO --- */
+.logo-area {
     display: flex;
     align-items: center;
-    gap: 12px; /* Espaço entre a bolinha azul e o texto */
+    gap: 12px;
 }
 
-#logo-ecommerce-header {
-    width: 48px;
-    height: 48px;
-    /*border-radius: 50%; /* Deixa a imagem redonda */
-    /*object-fit: cover;*/
+/* O quadrado azul com o "E" */
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #0066ff; /* Azul vibrante igual da imagem */
+    color: white;
+    border-radius: 12px; /* Bordas arredondadas (Squircle) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 500;
 }
 
-#nome-desc-ecommerce-header {
+.logo-text-group {
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
-#nome-ecommerce-header {
-    font-size: 24px;
-    font-weight: 800; /* Texto bem negrito */
-    color: #111827; /* Cinza escuro quase preto */
-    margin: 0;
+.logo-title {
+    font-size: 20px;
+    font-weight: 800; /* Texto bem grosso */
+    color: #1e293b;   /* Azul escuro quase preto */
     line-height: 1.1;
 }
 
-#desc-ecommerce-header {
-    font-size: 13px;
-    color: #9ca3af; /* Cinza claro */
-    margin: 0;
+.logo-subtitle {
+    font-size: 12px;
+    color: #94a3b8; /* Cinza claro azulado */
     font-weight: 400;
 }
 
-/* --- Grupo da Direita --- */
-
-/* O "pulo do gato": Isso empurra o User e tudo depois dele para a direita */
-#user-info-header {
-    margin-left: auto; 
-    
-    /* Estilização do botão de usuário (Pílula cinza) */
+/* --- LADO DIREITO --- */
+.right-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
-    background-color: #f3f4f6; /* Fundo cinza bem claro */
-    padding: 8px 16px;
-    border-radius: 999px; /* Borda arredondada estilo pílula */
-    border: none;
-    cursor: pointer;
-    margin-right: 24px; /* Espaço até o carrinho */
-    transition: background-color 0.2s;
+    gap: 24px; /* Espaço entre os elementos da direita */
 }
 
-#user-info-header:hover {
-    background-color: #e5e7eb;
-}
-
-#user-icon-header {
-    width: 20px;
-    height: 20px;
-    opacity: 0.6;
-}
-
-#user-name-header {
-    margin: 0;
-    font-size: 14px;
-    font-weight: 500;
-    color: #374151;
-}
-
-/* Ícone do Carrinho */
-#cart-icon-header {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    margin-right: 32px; /* Espaço até o botão de sair */
-    opacity: 0.8;
-}
-
-/* Botão Sair */
-#exit-button-header {
+/* Botão Pílula do Usuário */
+.user-pill {
     display: flex;
     align-items: center;
     gap: 8px;
+    background-color: #f8fafc; /* Fundo muito leve */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 99px; /* Formato Pílula */
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.user-pill:hover {
+    background-color: #f1f5f9;
+}
+
+.user-pill span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #334155;
+}
+
+.user-pill i {
+    font-size: 16px;
+    color: #64748b;
+}
+
+/* Ícone Carrinho (Botão simples) */
+.icon-btn {
     background: transparent;
     border: none;
     cursor: pointer;
-    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1e293b;
 }
 
-#exit-icon-header {
-    width: 20px;
-    height: 20px;
-    filter: grayscale(100%); /* Garante que fique cinza */
-    opacity: 0.6;
+.icon-btn i {
+    font-size: 20px; /* Tamanho do carrinho */
 }
 
-#exit-text-header {
-    margin: 0;
-    font-size: 15px;
-    color: #4b5563; /* Cinza médio */
+/* Botão Sair */
+.exit-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #64748b; /* Cinza médio */
+}
+
+.exit-btn span {
+    font-size: 14px;
     font-weight: 500;
+}
+
+.exit-btn i {
+    font-size: 16px;
+}
+
+.exit-btn:hover {
+    color: #ef4444; /* Fica vermelho ao passar o mouse (opcional) */
 }
