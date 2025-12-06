@@ -27,7 +27,7 @@ export class ListProducts {
   }
 
   edit(id: number) {
-    this.router.navigate(['/edit-products', id]);
+    this.router.navigate(['product-management/edit-products', id]);
   }
 
   remove(id: number) {
