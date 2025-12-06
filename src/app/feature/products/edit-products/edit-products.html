@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="page-container">
 
   <div class="header-box">
@@ -11,54 +12,88 @@
     <h1>Gerenciar Produtos</h1>
   </div>
 
-  <div class="product-card">
+  <form class="product-card" [formGroup]="form" (ngSubmit)="save()">
 
     <h2>Editar Produto</h2>
 
+    <!-- Nome -->
     <div class="form-group">
       <label>Nome do Produto *</label>
-      <input type="text" [(ngModel)]="product.nome">
+      <input type="text" formControlName="nome" placeholder="Digite o nome do produto">
+      @if(submitted() && form.get('nome')?.invalid) {
+        <div class="error">Nome é obrigatório.</div>
+      }
     </div>
 
+    <!-- Categoria -->
     <div class="form-group">
       <label>Categoria *</label>
-      <select [(ngModel)]="product.categoria">
-        <option>Eletrônicos</option>
-        <option>Roupas</option>
-        <option>Acessórios</option>
+      <select formControlName="categoria">
+        <option value="">Selecione</option>
+        <option value="Eletrônicos">Eletrônicos</option>
+        <option value="Roupas">Roupas</option>
+        <option value="Alimentos">Alimentos</option>
+        <option value="Esporte">Esporte</option>
+        <option value="Moveis">Moveis</option>
+        <option value="Livros">Livros</option>
       </select>
+      @if(submitted() && form.get('categoria')?.invalid) {
+        <div class="error">Categoria é obrigatória.</div>
+      }
     </div>
 
+    <!-- Preço -->
     <div class="form-group">
       <label>Preço (R$) *</label>
-      <input type="number" [(ngModel)]="product.preco">
+      <input type="number" formControlName="preco" placeholder="0.00">
+      @if(submitted() && form.get('preco')?.invalid) {
+        <div class="error">
+          @if(form.get('preco')?.errors?.['required']) { Preço é obrigatório. }
+          @if(form.get('preco')?.errors?.['min']) { Preço deve ser maior que 0. }
+        </div>
+      }
     </div>
 
+    <!-- Estoque -->
     <div class="form-group">
       <label>Quantidade em Estoque *</label>
-      <input type="number" [(ngModel)]="product.estoque">
+      <input type="number" formControlName="quantidadeEstoque" placeholder="0">
+      @if(submitted() && form.get('quantidadeEstoque')?.invalid) {
+        <div class="error">
+          @if(form.get('quantidadeEstoque')?.errors?.['required']) { Quantidade é obrigatória. }
+          @if(form.get('quantidadeEstoque')?.errors?.['min']) { Quantidade não pode ser negativa. }
+        </div>
+      }
     </div>
 
+    <!-- Descrição -->
     <div class="form-group">
-      <label>Descrição</label>
-      <textarea [(ngModel)]="product.descricao"></textarea>
+      <label>Descrição *</label>
+      <textarea formControlName="descricao" placeholder="Digite uma descrição detalhada do produto"></textarea>
+      @if(submitted() && form.get('descricao')?.invalid) {
+        <div class="error">Descrição é obrigatória.</div>
+      }
     </div>
 
+    <!-- Características -->
     <div class="form-group">
       <label>Características</label>
-      <input type="text" [(ngModel)]="caracteristicasInput">
+      <input type="text" formControlName="caracteristicas" placeholder="Ex: Bluetooth, USB-C, Garantia 1 ano">
+      <small>Digite as características separadas por vírgula</small>
     </div>
 
-     <div class="buttons">
-      <button class="btn-primary">
+    <!-- Botões -->
+    <div class="buttons">
+      <button class="btn-primary" type="submit" [disabled]="isSubmitting()">
         <i class="fas fa-check"></i> Atualizar
       </button>
 
-      <button class="btn-secondary" routerLink="/products">
+      <button class="btn-secondary" type="button" routerLink="/products">
         <i class="fas fa-times"></i> Cancelar
       </button>
     </div>
 
-  </div>
+  </form>
 
 </div>
+<app-footer></app-footer>

@@ -38,9 +38,9 @@
           <td>R$ {{ p.preco | number:'1.2-2' }}</td>
 
           <td>
-            <span class="badge" [class.low]="p.estoque <= 20" [class.medium]="p.estoque > 20 && p.estoque <= 50"
-              [class.high]="p.estoque > 50">
-              {{ p.estoque }}
+            <span class="badge" [class.low]="p.quantidadeEstoque <= 20" [class.medium]="p.quantidadeEstoque > 20 && p.quantidadeEstoque <= 50"
+              [class.high]="p.quantidadeEstoque > 50">
+              {{ p?.quantidadeEstoque ?? '0' }}
             </span>
           </td>
 
