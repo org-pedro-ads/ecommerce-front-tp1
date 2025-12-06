@@ -3,11 +3,15 @@ import { ListProducts } from './feature/products/list-products/list-products';
 import { InvalidPage } from './feature/invalid-page/invalid-page';
 import { Login } from './feature/auth/login/login';
 import { Register } from './feature/auth/register/register';
+import { RegisterProducts } from './feature/products/register-products/register-products';
+import { EditProducts } from './feature/products/edit-products/edit-products';
 
 export const routes: Routes = [
-    {path: '', component: ListProducts},
-    {path: 'produtos', component: ListProducts},
+    {path: '', component: Login},
+    {path: 'products', component: ListProducts},
     {path: 'login', component: Login},
     {path: 'register', component: Register},
+    {path: 'register-products', component: RegisterProducts},
+    {path: 'edit-products/:id', component: EditProducts},
     {path: '**', component: InvalidPage}
 ];

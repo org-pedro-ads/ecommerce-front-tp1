@@ -1,0 +1,147 @@
+.page-container {
+  padding: 30px;
+  background: #f7f9fc;
+}
+
+.header-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.header-box h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e1e1e;
+}
+
+.header-box p {
+  color: #666;
+  margin-left: 6px;
+}
+
+.icon-circle {
+  width: 45px;
+  height: 45px;
+  background: #1a73e8;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle i {
+  color: #fff;
+  font-size: 22px;
+}
+
+.product-card {
+  background: white;
+  padding: 24px;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th {
+  text-align: left;
+  padding: 16px;
+  background: #f5f6fa;
+  font-weight: 600;
+}
+
+.table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Badges */
+.badge {
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-weight: 600;
+}
+
+.low {
+  background: #ffe9a6;
+  color: #b88c00;
+}
+
+.medium {
+  background: #d2ffd9;
+  color: #0d8f32;
+}
+
+.high {
+  background: #c8f7ff;
+  color: #0084a6;
+}
+
+/* Ações */
+.actions i {
+  cursor: pointer;
+  padding: 8px;
+  font-size: 18px;
+}
+
+.edit {
+  background-color: black;
+  color: #1a73e8;
+}
+
+.remove {
+  background-color: #0084a6;
+  color: #d9534f;
+}
+
+
+.add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+
+  background-color: #1a73e8;
+  color: white;
+  text-decoration: none;
+
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: 0.2s;
+  padding: 4px;
+}
+
+.icon-btn.edit:hover {
+  color: #1a73e8;
+  transform: scale(1.15);
+}
+
+.icon-btn.remove:hover {
+  color: #e84545;
+  transform: scale(1.15);
+}

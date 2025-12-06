@@ -1,0 +1,64 @@
+<div class="page-container">
+
+  <div class="header-box">
+    <div class="icon-circle">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+        fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 16V8a2 2 0 0 0-1.2-1.8l-7-3a2 2 0 0 0-1.6 0l-7 3A2 2 0 0 0 3 8v8a2 2 0 0 0 1.2 1.8l7 3a2 2 0 0 0 1.6 0l7-3A2 2 0 0 0 21 16z"></path>
+      </svg>
+    </div>
+    <h1>Gerenciar Produtos</h1>
+  </div>
+
+  <div class="product-card">
+
+    <h2>Editar Produto</h2>
+
+    <div class="form-group">
+      <label>Nome do Produto *</label>
+      <input type="text" [(ngModel)]="product.nome">
+    </div>
+
+    <div class="form-group">
+      <label>Categoria *</label>
+      <select [(ngModel)]="product.categoria">
+        <option>Eletrônicos</option>
+        <option>Roupas</option>
+        <option>Acessórios</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Preço (R$) *</label>
+      <input type="number" [(ngModel)]="product.preco">
+    </div>
+
+    <div class="form-group">
+      <label>Quantidade em Estoque *</label>
+      <input type="number" [(ngModel)]="product.estoque">
+    </div>
+
+    <div class="form-group">
+      <label>Descrição</label>
+      <textarea [(ngModel)]="product.descricao"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Características</label>
+      <input type="text" [(ngModel)]="caracteristicasInput">
+    </div>
+
+     <div class="buttons">
+      <button class="btn-primary">
+        <i class="fas fa-check"></i> Atualizar
+      </button>
+
+      <button class="btn-secondary" routerLink="/products">
+        <i class="fas fa-times"></i> Cancelar
+      </button>
+    </div>
+
+  </div>
+
+</div>

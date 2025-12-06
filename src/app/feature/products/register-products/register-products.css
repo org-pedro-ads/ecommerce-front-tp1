@@ -1,0 +1,138 @@
+/* ===== GLOBAL FIX ===== */
+* {
+  box-sizing: border-box;
+}
+
+/* ===== CONTAINER DA PÁGINA ===== */
+.product-container {
+  width: 100%;
+  padding: 40px 16px;
+  background: #f7f9fc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== TÍTULO E ÍCONE ===== */
+.title-box {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.icon-circle {
+  width: 70px;
+  height: 70px;
+  background: #1a73e8;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 16px auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.icon-circle i {
+  color: white;
+  font-size: 32px;
+}
+
+.title-box h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e1e1e;
+}
+
+.title-box p {
+  color: #666;
+}
+
+/* ===== CARD ===== */
+.product-card {
+  width: 100%;
+  max-width: 900px;
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 18px;
+  border: 1px solid #eee;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== FORM ===== */
+.form-group {
+  margin-bottom: 22px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #1e1e1e;
+  font-size: 15px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: #f5f6fa;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+textarea {
+  height: 140px;
+  resize: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #1a73e8;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+}
+
+small {
+  color: #666;
+  margin-top: 4px;
+  display: block;
+}
+
+/* ===== BOTÕES ===== */
+.buttons {
+  display: flex;
+  gap: 16px;
+}
+
+button {
+  flex: 1;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Azul */
+.btn-primary {
+  background: #1a73e8;
+  color: white;
+}
+.btn-primary:hover {
+  background: #1259b5;
+}
+
+/* Cinza */
+.btn-secondary {
+  background: #f0f0f5;
+  color: #444;
+}
+.btn-secondary:hover {
+  background: #e5e5ea;
+}
