@@ -1,41 +1,63 @@
 <app-header></app-header>
 
-<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
-  <div>
-    <label for="nome">Nome Completo:</label>
-    <input type="text" id="nome" name="nome" ngModel required />
+<div class="login-container">
+  <div class="login-box">
+    
+    <div class="icon-header">
+      <div class="icon-circle">
+        <span>+</span> </div>
+      <h2>Criar nova conta</h2>
+      <p>Preencha os dados para se cadastrar</p>
+    </div>
+
+    <div class="login-card">
+      <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+        
+        <div class="form-group">
+          <label for="nome">Nome Completo</label>
+          <input type="text" id="nome" name="nome" ngModel required placeholder="Digite seu nome" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" ngModel required placeholder="exemplo@email.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" name="senha" ngModel required placeholder="Mínimo 6 caracteres" />
+        </div>
+
+        <div class="form-group">
+          <label for="confirmacaoSenha">Confirmação da Senha</label>
+          <input type="password" id="confirmacaoSenha" name="confirmacaoSenha" ngModel required placeholder="Repita a senha" />
+        </div>
+
+        <div class="form-group">
+          <label for="tipoUsuario">Tipo de Usuário</label>
+          <select id="tipoUsuario" name="tipoUsuario" ngModel required>
+            <option value="" disabled selected>Selecione uma opção</option>
+            <option value="cliente">Cliente</option>
+            <option value="lojista">Lojista</option>
+          </select>
+        </div>
+
+        <div class="buttons">
+            <button type="submit" class="btn-primary" [disabled]="!registerForm.valid">
+               Registrar
+            </button>
+            <button type="button" class="btn-secondary">
+               Cancelar
+            </button>
+        </div>
+
+        <div class="register-link">
+          <a href="#">Já tem uma conta? Faça login</a>
+        </div>
+
+      </form>
+    </div>
   </div>
-
-  <div>
-    <label for="email">E-mail:</label>
-    <input type="email" id="email" name="email" ngModel required />
-  </div>
-
-  <div>
-    <label for="senha">Senha:</label>
-    <input type="senha" id="senha" name="senha" ngModel required />
-  </div>
-  <div>
-    <label for="confirmacaoSenha">Confirmação da Senha:</label>
-    <input type="password" id="confirmacaoSenha" name="confirmacaoSenha" ngModel required />
-  </div>
-  <div>
-    <label for="tipoUsuario">Tipo de Usuário:</label>
-    <input type="combo" id="tipoUsuario" name="tipoUsuario" ngModel required />
-  </div>
-
-  <div>
-      <button type="submit" [disabled]="!registerForm.valid">Registrar</button>
-      <button type="button">Cancelar</button>
-  </div>
-
-  <div>
-    <a href="#">Ja tem uma conta? Faça login</a>
-  </div>
-
-
-
-</form>
-
+</div>
 
 <app-footer></app-footer>
