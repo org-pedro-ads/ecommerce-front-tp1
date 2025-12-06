@@ -1,0 +1,19 @@
+<app-header></app-header>
+
+@if(loading()) {
+  <p>Carregando produtos...</p>
+} @else if (listProducts().length === 0) {
+  <p>Nenhum produto disponível.</p>
+} @else {
+  <div class="product-list">
+    @for (product of listProducts(); track product.id) {
+      <div class="product-item">
+        <h2>{{ product.nome }}</h2>
+        <p>{{ product.descricao }}</p>
+        <p>Preço: R$ {{ product.preco.toFixed(2) }}</p>
+      </div>
+    }
+  </div>
+}
+
+<app-footer></app-footer>

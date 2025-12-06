@@ -1,0 +1,184 @@
+/* ===== GLOBAL SETTINGS ===== */
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif; /* Fonte padrão segura */
+}
+
+/* Garante que o container ocupe a tela toda para centralizar */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===== CONTAINER PRINCIPAL ===== */
+.login-container {
+  flex-grow: 1; /* Ocupa o espaço entre header e footer */
+  padding: 40px 16px;
+  display: flex;
+  justify-content: center; /* Centro Horizontal */
+  align-items: center;     /* Centro Vertical */
+  background: #f7f9fc;
+}
+
+/* ===== WRAPPER (Largura máxima) ===== */
+.login-box {
+  width: 100%;
+  max-width: 450px; /* Levemente mais largo que o login para caber melhor os dados */
+  text-align: center;
+}
+
+/* ===== HEADER (Icone + Texto) ===== */
+.icon-header {
+  margin-bottom: 24px;
+}
+
+.icon-circle {
+  width: 70px;
+  height: 70px;
+  background: #1a73e8; /* Azul Google/Padrão */
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 16px auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  
+  /* Estilo do texto dentro do ícone se não houver imagem */
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.icon-header h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1e1e1e;
+  margin: 0 0 8px 0;
+}
+
+.icon-header p {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ===== CARD (Fundo Branco) ===== */
+.login-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
+}
+
+/* ===== FORM ELEMENTS ===== */
+.form-group {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  color: #1e1e1e;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: #f5f6fa;
+  transition: 0.2s;
+  font-size: 15px;
+  color: #333;
+}
+
+input:focus,
+select:focus {
+  border-color: #1a73e8;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+}
+
+/* Remove aparência padrão do select para ficar igual input */
+select {
+  cursor: pointer;
+  background-image: none; /* Se quiser remover seta padrão */
+}
+
+/* ===== BUTTONS ===== */
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Botão Azul */
+.btn-primary {
+  background-color: #1a73e8;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #155db5;
+}
+
+.btn-primary:disabled {
+  background-color: #a0c3f0;
+  cursor: not-allowed;
+}
+
+/* Botão Cinza */
+.btn-secondary {
+  background: #f0f0f5;
+  color: #444;
+}
+
+.btn-secondary:hover {
+  background: #e5e5ea;
+}
+
+/* ===== LINK RODAPÉ DO CARD ===== */
+.register-link {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #1a73e8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* Header e Footer não interferem no layout flex */
+app-header, app-footer {
+  width: 100%;
+  z-index: 10;
+}
