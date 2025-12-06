@@ -136,3 +136,8 @@ button {
 .btn-secondary:hover {
   background: #e5e5ea;
 }
+
+
+div .error {
+  color: red;
+}

@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export interface Produto {
   id: number;
   nome: string;
   categoria: string;
   preco: number;
-  estoque: number;
+  quantidadeEstoque: number;
   descricao: string;
   caracteristicas: string[];
 }
@@ -15,41 +17,30 @@ export interface Produto {
 })
 
 export class ProductsService {
-  private produtos: Produto[] = [
-    {
-      id: 1,
-      nome: "Notebook Dell Inspiron 15",
-      categoria: "Eletrônicos",
-      preco: 3499.90,
-      estoque: 15,
-      descricao: "Notebook Dell Inspiron 15...",
-      caracteristicas: ["Intel Core i5", "8GB RAM", "256GB SSD"]
-    },
-    {
-      id: 2,
-      nome: "Mouse Logitech MX Master 3",
-      categoria: "Eletrônicos",
-      preco: 389.90,
-      estoque: 45,
-      descricao: "Mouse profissional Logitech...",
-      caracteristicas: ["Bluetooth", "Silencioso"]
-    }
-  ];
+  private readonly apiUrl = 'http://localhost:8080/api/produtos'
+  private http = inject(HttpClient)
 
-  listar() {
-    return this.produtos;
+  private products: Produto[] = []
+
+  listar(): Observable<Produto[]> {
+    return this.http.get<Produto[]>(this.apiUrl);
   }
 
-  buscarPorId(id: number) {
-    return this.produtos.find(p => p.id === id)!;
+  cadastrar(produto: Partial<Produto>): Observable<Produto> {
+    console.log('>>>>>>>>>>>>>>>', produto)
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<Produto>(this.apiUrl, JSON.stringify(produto), { headers });
   }
 
-  atualizar(id: number, produto: Produto) {
-    const index = this.produtos.findIndex(p => p.id === id);
-    this.produtos[index] = produto;
+  buscarPorId(id: number): Observable<Produto> {
+    return this.http.get<Produto>(`${this.apiUrl}/${id}`);
+  }
+
+  atualizar(id: number, produto: Partial<Produto>) {
+    return this.http.get<Produto>(`${this.apiUrl}/${id}`);
   }
 
   remover(id: number) {
-    this.produtos = this.produtos.filter(p => p.id !== id);
+    this.products = this.products.filter(p => p.id !== id);
   }
 }
