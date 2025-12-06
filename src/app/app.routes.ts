@@ -8,10 +8,10 @@ import { EditProducts } from './feature/products/edit-products/edit-products';
 
 export const routes: Routes = [
     {path: '', component: Login},
-    {path: 'products', component: ListProducts},
+    {path: 'product-management/list', component: ListProducts},
+    {path: 'product-management/register-products', component: RegisterProducts},
+    {path: 'product-management/edit-products/:id', component: EditProducts},
     {path: 'login', component: Login},
     {path: 'register', component: Register},
-    {path: 'register-products', component: RegisterProducts},
-    {path: 'edit-products/:id', component: EditProducts},
     {path: '**', component: InvalidPage}
 ];
