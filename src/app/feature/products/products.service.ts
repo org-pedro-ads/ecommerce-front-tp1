@@ -17,7 +17,7 @@ export interface Produto {
 })
 
 export class ProductsService {
-  private readonly apiUrl = 'http://localhost:8080/api/produtos'
+  private readonly apiUrl = 'https://ecommerce-api-tp1.onrender.com/api/produtos'
   private http = inject(HttpClient)
 
   private products: Produto[] = []
@@ -27,7 +27,6 @@ export class ProductsService {
   }
 
   cadastrar(produto: Partial<Produto>): Observable<Produto> {
-    console.log('>>>>>>>>>>>>>>>', produto)
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<Produto>(this.apiUrl, JSON.stringify(produto), { headers });
   }
