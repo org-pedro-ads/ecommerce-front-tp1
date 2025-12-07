@@ -11,5 +11,4 @@ export class HistoryOrders {
 
   private apiUrl = 'https://ecommerce-api-tp1.onrender.com/api/pedidos/usuario';
 
-  getHistoryPedidosUser(): 
 }

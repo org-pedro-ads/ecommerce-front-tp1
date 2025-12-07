@@ -3,7 +3,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Header } from "../../../core/header/header"
 import { Footer } from "../../../core/footer/footer";
 import { CommonModule } from '@angular/common';
-import { User, tipoUsuarioEnum } from '../../../models/user'
+import { User } from '../../../models/user'
 import { RouterLink } from "@angular/router";
 
 @Component({
@@ -15,12 +15,11 @@ import { RouterLink } from "@angular/router";
 export class Register {
   registrationForm: any;
 
-
   novoUsuario: User = {
     nome: '',
     email: '',
     senha: '',
-    tipoUsuario: tipoUsuarioEnum.Cliente
+    admin: false
   }
 
 

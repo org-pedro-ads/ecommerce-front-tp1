@@ -1,5 +1,4 @@
 export class User {
-  id!: number;
   nome!: string;
   email!: string;
   senha!: string;
@@ -9,7 +8,6 @@ export class User {
 export class UserMapper {
   static fromJson(json: any): User {
     const user = new User();
-    user.id = json.id;
     user.nome = json.nome;
     user.email = json.email;
     user.senha = json.senha;
@@ -19,7 +17,6 @@ export class UserMapper {
 
   static toJson(user: User): any {
     return {
-      id: user.id,
       nome: user.nome,
       email: user.email,
       senha: user.senha,
