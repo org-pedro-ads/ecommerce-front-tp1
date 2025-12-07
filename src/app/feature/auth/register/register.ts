@@ -24,6 +24,7 @@ export class Register {
   enviando = signal(false);
 
   novoUsuario: User = {
+    id: 0,
     nome: '',
     email: '',
     senha: '',
@@ -52,6 +53,7 @@ export class Register {
     this.messageService.add('Registrando usuário...', 'info');
 
     const usuarioParaEnvio: User = {
+      id: 0, // O ID será atribuído pelo backend
       nome: form.value.nome,
       email: form.value.email,
       senha: form.value.senha,

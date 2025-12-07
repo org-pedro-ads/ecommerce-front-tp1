@@ -13,18 +13,18 @@
 
     <!-- CARD -->
     <div class="login-card">
-      <form>
+      <form (ngSubmit)="handleSubmit()">
 
         <!-- EMAIL -->
         <div class="form-group">
           <label>E-mail</label>
-          <input type="email" placeholder="exemplo@email.com" />
+          <input type="email" placeholder="exemplo@email.com" [(ngModel)]="formData.email" name="email" required />
         </div>
 
         <!-- SENHA -->
         <div class="form-group">
           <label>Senha</label>
-          <input type="password" placeholder="Mínimo 6 caracteres" />
+          <input type="password" placeholder="Mínimo 6 caracteres" [(ngModel)]="formData.password" name="password" required />
         </div>
 
         <!-- BUTTONS -->
@@ -34,7 +34,7 @@
             <i class="lucide lucide-log-in"></i> Entrar
           </button>
 
-          <button type="button" class="btn-secondary">
+          <button type="button" class="btn-secondary" (click)="handleCancel()">
             <i class="lucide lucide-x"></i> Cancelar
           </button>
         </div>
