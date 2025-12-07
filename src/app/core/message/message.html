@@ -1,0 +1,12 @@
+@if (messageService.messages.length) {
+  <div class="messages-container">
+    @for (msg of messageService.messages; track $index) {
+      
+      <div class="message-box" [class]="msg.type">
+        <span class="text">{{ msg.text }}</span>
+        <button class="close-btn" (click)="messageService.remove($index)" type="button">✖</button>
+      </div>
+
+    }
+  </div>
+}

@@ -3,11 +3,6 @@ export class User {
   nome!: string;
   email!: string;
   senha!: string;
-  tipoUsuario!: tipoUsuarioEnum
+  admin!: boolean;
 
-}
-  
-export enum tipoUsuarioEnum {
-  "Cliente",
-  "Admin"
 }
