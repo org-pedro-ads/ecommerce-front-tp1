@@ -29,7 +29,7 @@ export class Register {
     email: '',
     senha: '',
     admin: false
-  };
+  }
 
   onSubmit(form: NgForm) {
     if (form.invalid) {
