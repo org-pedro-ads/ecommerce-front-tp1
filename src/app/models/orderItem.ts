@@ -1,3 +1,4 @@
+import { Order } from "./order";
 import { Product, ProductMapper } from "./product";
 
 export class OrderItem {

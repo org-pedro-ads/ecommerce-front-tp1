@@ -8,10 +8,11 @@ import { ShoppingCartService } from '../../../core/services/shopping-cart/shoppi
 import { OrderItem } from '../../../models/orderItem';
 import { Header } from '../../../core/header/header';
 import { Footer } from '../../../core/footer/footer';
+import { QuantidadeControle } from '../../../core/shared/quantidade-controle/quantidade-controle';
 
 @Component({
   selector: 'app-shopping-cart',
-  imports: [CommonModule, Header, Footer],
+  imports: [CommonModule, Header, Footer, QuantidadeControle],
   templateUrl: './shopping-cart.html',
   styleUrl: './shopping-cart.css',
 })
@@ -20,42 +21,10 @@ export class ShoppingCart {
   private shoppingtCart = inject(ShoppingCartService);
   private router = inject(Router);
 
-  // itensCart = toSignal<Order | null>(this.shoppingtCart.getCartByUser(11)
-  // .pipe(finalize(() => this.loading.set(false))), {
-  //   initialValue: null
-  // });
-
-  itensCart = signal({
-    id: 1,
-    itens: [
-      {
-        id: 1,
-        produto: {
-          id: 101,
-          nome: 'Café Especial Torrado 250g',
-          preco: 24.9
-        },
-        quantidade: 1,
-        preco: 24.9,
-        subTotal: 24.9
-      },
-      {
-        id: 2,
-        produto: {
-          id: 102,
-          nome: 'Chocolate 70% Cacau',
-          preco: 12.5
-        },
-        quantidade: 2,
-        preco: 12.5,
-        subTotal: 25.0
-      }
-    ],
-    dataPedido: 12/12/2025,
-    valorTotal: 100.0,
-    status: 'PAGO'
+  itensCart = toSignal<Order | null>(this.shoppingtCart.getCartByUser(1)
+  .pipe(finalize(() => this.loading.set(false))), {
+    initialValue: null
   });
-
 
   subtotal = computed(() =>{
       let sum = 0;
@@ -74,17 +43,16 @@ export class ShoppingCart {
     this.shoppingtCart.updateItem(productId, quantity);
   }
 
-  changeQuantity(item: OrderItem, delta: number) {
-    const novaQuantidade = item.quantidade + delta;
+  changeQuantity(id: number, quantidade: number, delta: number) {
+    const novaQuantidade = quantidade + delta;
   
     if (novaQuantidade < 1) return;
-  
+    
     this.updateCartQuantity(
-      item.id,
+      id,
       novaQuantidade
     );
   }
-  
 
   removeFromCart(productId: number) {
     this.shoppingtCart.removeItem(productId);
@@ -93,7 +61,7 @@ export class ShoppingCart {
   checkout() {
     if (this.itensCart() === null) return;
 
-    this.shoppingtCart.checkout(12);
+    this.shoppingtCart.checkout(1);
     this.router.navigate(['/history']);
   }
 
