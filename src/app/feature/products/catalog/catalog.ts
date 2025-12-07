@@ -71,4 +71,8 @@ export class Catalog {
       this.router.navigate(['/user/edit']);
     }
   }
+
+  isAdmin() {
+    return this.authService.isAdmin();
+  }
 }

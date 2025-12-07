@@ -25,16 +25,21 @@
       </a>
 
       <div class="nav-divider"></div>
-
-      <a routerLink="/products/product-management/register-products" class="nav-item">
-        <i class="lucide lucide-plus"></i>
-        <span>Cadastrar Produtos</span>
-      </a>
-
-      <a routerLink="/products/product-management/list" class="nav-item">
-        <i class="lucide lucide-settings"></i>
-        <span>Gerenciar Produtos</span>
-      </a>
+      
+      @if(isAdmin()) {
+        <div class="admin-section">
+          <span class="nav-section-title">Administração</span>
+          <a routerLink="/products/product-management/register-products" class="nav-item">
+            <i class="lucide lucide-plus"></i>
+            <span>Cadastrar Produtos</span>
+          </a>
+    
+          <a routerLink="/products/product-management/list" class="nav-item">
+            <i class="lucide lucide-settings"></i>
+            <span>Gerenciar Produtos</span>
+          </a>
+        </div>
+      }
     </nav>
   </aside>
 
