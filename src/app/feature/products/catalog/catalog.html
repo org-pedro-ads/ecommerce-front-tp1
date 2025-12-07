@@ -55,10 +55,12 @@
       </div>
 
       <div class="category-box">
-        <select> // TODO: Vincular ao filtro de categoria
-          <option value="todas">Todas as categorias</option>
-          <option value="eletronicos">Eletrônicos</option>
-          <option value="roupas">Roupas</option>
+        <select [ngModel]="categoriaSelecionada()" (ngModelChange)="onCategoriaChange($event)">
+          <option value="" disabled>Selecione uma categoria...</option>
+          <option value="all">Todas as categorias</option>
+          @for (categoria of listCategories(); track categoria) {
+        <option value="{{ categoria }}">{{ categoria }}</option>
+          }
         </select>
       </div>
 
@@ -68,7 +70,7 @@
         </span>
         
         <div class="sort-box">
-          <select> // TODO: Vincular ao filtro de ordenação
+          <select [ngModel]="ordenarPor()" (ngModelChange)="ordenarPor.set($event)">
             <option>Ordenar por: Nome</option>
             <option>Ordenar por: Preço Menor</option>
             <option>Ordenar por: Preço Maior</option>
