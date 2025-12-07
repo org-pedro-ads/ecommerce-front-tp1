@@ -55,7 +55,7 @@
       </div>
 
       <div class="category-box">
-        <select [ngModel]="categoriaSelecionada()" (ngModelChange)="onCategoriaChange($event)">
+        <select [ngModel]="categoriaSelecionada()" (ngModelChange)="onCategoriaChange($event)" class="category-select">
           <option value="" disabled>Selecione uma categoria...</option>
           <option value="all">Todas as categorias</option>
           @for (categoria of listCategories(); track categoria) {

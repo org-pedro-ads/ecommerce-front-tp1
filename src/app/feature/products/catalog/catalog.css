@@ -32,6 +32,7 @@
   font-weight: 500;
   font-size: 15px;
   transition: all 0.2s;
+  cursor: pointer;
 }
 
 .nav-item i {
@@ -98,6 +99,7 @@
 }
 
 /* Campo de Busca */
+/* Campo de Busca */
 .search-box {
   position: relative;
   width: 100%;
@@ -110,11 +112,13 @@
   transform: translateY(-50%);
   color: #9ca3af;
   width: 20px;
+  pointer-events: none; /* Garante que o clique passe pelo ícone e vá para o input */
 }
 
 .search-box input {
-  width: 100%;
-  padding: 14px 14px 14px 48px; /* Padding esquerda maior p/ icone */
+  width: 100%; /* MUDADO DE 90% PARA 100% */
+  box-sizing: border-box; /* IMPORTANTE: Inclui o padding no cálculo da largura */
+  padding: 14px 14px 14px 44px; /* Aumentei o padding da esquerda para o texto não ficar em cima do ícone */
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   font-size: 15px;
@@ -128,8 +132,14 @@
 }
 
 /* Dropdown de Categorias */
-.category-box select {
+/* Adicionei essa classe container se ela não existir no seu HTML, ou aplique width 100% se já existir */
+.category-box { 
   width: 100%;
+}
+
+.category-box select {
+  width: 100%; /* MUDADO DE 90% PARA 100% */
+  box-sizing: border-box; /* IMPORTANTE */
   padding: 14px;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
@@ -138,6 +148,12 @@
   color: #374151;
   outline: none;
   cursor: pointer;
+  appearance: none; /* Opcional: Remove o estilo padrão feio do navegador para estilizar a seta depois */
+}
+
+.category-select {
+  width: 100%;
+  background-color: aqua;
 }
 
 /* Barra de Resultados */

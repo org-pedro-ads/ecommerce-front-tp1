@@ -14,6 +14,4 @@ export class EditUser {
     this.user = new User();
   }
 
-  
-
 }
