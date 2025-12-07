@@ -7,7 +7,8 @@ import { Footer } from "../../../core/footer/footer";
 import { finalize } from 'rxjs';
 import { CardProduct } from '../card-product/card-product';
 import { FormsModule } from "@angular/forms";
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
+import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-catalog',
@@ -18,6 +19,8 @@ import { RouterLink } from "@angular/router";
 export class Catalog {
 
   private productService = inject(ProductService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
   
   loading = signal(true);
   categoriaSelecionada = signal<string | null>(null);
@@ -61,5 +64,11 @@ export class Catalog {
     this.categoriaSelecionada.set(categoria);
   }
 
-
+  onClickMeuPerfil() {
+    if(!this.authService.idUser()) {
+      this.router.navigate(['']);
+    } else {
+      this.router.navigate(['/user/edit']);
+    }
+  }
 }

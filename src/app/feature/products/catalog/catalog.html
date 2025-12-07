@@ -9,7 +9,7 @@
         <span>Catálogo</span>
       </a>
       
-      <a class="nav-item">
+      <a class="nav-item" routerLink="/carrinho">
         <i class="lucide lucide-shopping-cart"></i>
         <span>Carrinho</span>
       </a>
@@ -19,7 +19,7 @@
         <span>Meus Pedidos</span>
       </a>
 
-      <a routerLink="/user/edit" class="nav-item">
+      <a (click)="onClickMeuPerfil()" class="nav-item">
         <i class="lucide lucide-user"></i>
         <span>Meu Perfil</span>
       </a>
