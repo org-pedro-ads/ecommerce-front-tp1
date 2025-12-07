@@ -6,6 +6,7 @@ import { Register } from './feature/auth/register/register';
 import { RegisterProducts } from './feature/products/register-products/register-products';
 import { EditProducts } from './feature/products/edit-products/edit-products';
 import { Catalog } from './feature/products/catalog/catalog';
+import { EditUser } from './feature/user/edit-user/edit-user';
 
 export const routes: Routes = [
     {path: '', component: Login},
@@ -16,5 +17,6 @@ export const routes: Routes = [
     {path: 'products/catalog', component: Catalog },
     {path: 'login', component: Login},
     {path: 'register', component: Register},
+    {path: 'user/edit', component: EditUser},
     {path: '**', component: InvalidPage}
 ];

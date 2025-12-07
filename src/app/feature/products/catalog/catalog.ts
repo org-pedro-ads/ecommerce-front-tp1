@@ -7,10 +7,11 @@ import { Footer } from "../../../core/footer/footer";
 import { finalize } from 'rxjs';
 import { CardProduct } from '../card-product/card-product';
 import { FormsModule } from "@angular/forms";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-catalog',
-  imports: [Header, Footer, CardProduct, FormsModule],
+  imports: [Header, Footer, CardProduct, FormsModule, RouterLink],
   templateUrl: './catalog.html',
   styleUrl: './catalog.css',
 })

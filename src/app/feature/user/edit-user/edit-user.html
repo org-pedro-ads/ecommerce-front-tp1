@@ -1,0 +1,63 @@
+<div class="page-container">
+  
+  <header class="page-header">
+    <div class="header-text">
+      <h1>Meu Perfil</h1>
+      <p>Informações da sua conta</p>
+    </div>
+  </header>
+
+  <div class="card">
+    
+    <div class="card-header">
+      <div class="user-info">
+        <div class="avatar"></div>
+        
+        <div class="texts">
+          <h2>{{ user.fullName }}</h2>
+          <span>{{ user.email }}</span>
+        </div>
+      </div>
+      
+      <button class="btn-edit">
+        Editar
+      </button>
+    </div>
+
+    <div class="form-grid">
+      
+      <div class="form-group">
+        <label>Nome Completo</label>
+        <div class="input-wrapper">
+          <span class="value">{{ user.fullName }}</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>E-mail</label>
+        <div class="input-wrapper">
+          <span class="value">{{ user.email }}</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Tipo de Usuário</label>
+        <div class="input-wrapper">
+          <span class="value">{{ user.role }}</span>
+          
+          @if (user.roleLabel) {
+            <span class="badge">{{ user.roleLabel }}</span>
+          }
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>ID do Usuário</label>
+        <div class="input-wrapper">
+          <span class="value">{{ user.id }}</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
