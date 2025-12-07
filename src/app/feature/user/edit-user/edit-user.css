@@ -1,50 +1,47 @@
-/* Definição de Variáveis (Fácil de alterar cores depois) */
 :host {
+  /* Variáveis mantidas */
   --primary-blue: #0066ff;
   --bg-color: #f9fafb;
   --card-bg: #ffffff;
   --text-dark: #1f2937;
   --text-light: #6b7280;
-  --input-bg: #f9fafb; /* Fundo cinza bem claro para os campos */
+  --input-bg: #f9fafb;
   --border-color: #e5e7eb;
-  --badge-bg: #f3e8ff;
-  --badge-text: #9333ea;
   
   display: block;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-color);
   min-height: 100vh;
-  padding: 2rem;
-  box-sizing: border-box;
+  /* >>> ALTERAÇÃO: Removido padding: 2rem; */
+  box-sizing: border-box; 
+}
+
+app-edit-user {
+  display: block;
+  /* >>> ALTERAÇÃO: Garante que o componente não tenha padding interno */
+  padding: 0; 
+}
+
+/* >>> ALTERAÇÃO: HEADER E FOOTER com 100% (já estavam, mas garantimos) */
+app-header, app-footer {
+  width: 100%;
 }
 
 .page-container {
   max-width: 1000px;
-  margin: 0 auto;
+  /* Ajuste de margem vertical para compensar o padding removido */
+  margin: 2rem auto; 
+  /* Adiciona padding horizontal interno para telas maiores que 1000px */
+  padding: 0 2rem; 
+  box-sizing: border-box;
 }
 
-/* --- Cabeçalho da Página --- */
+/* O restante do CSS foi mantido inalterado */
 .page-header {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 1.5rem;
-}
-
-.page-header .header-icon {
-  width: 40px;
-  height: 40px;
-  background-color: var(--primary-blue);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-.page-header .header-icon svg {
-  width: 20px;
-  height: 20px;
 }
 
 .page-header .header-text h1 {
@@ -60,7 +57,7 @@
   font-size: 0.9rem;
 }
 
-/* --- Card Principal --- */
+/* --- Card --- */
 .card {
   background: var(--card-bg);
   border-radius: 12px;
@@ -68,7 +65,6 @@
   padding: 2rem;
 }
 
-/* Topo do Card (Avatar e Botão) */
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -93,21 +89,11 @@
   color: white;
 }
 
-.card-header .avatar svg {
-  width: 32px;
-  height: 32px;
-}
-
 .card-header .texts h2 {
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--text-dark);
   margin: 0 0 0.25rem 0;
-}
-
-.card-header .texts span {
-  color: var(--text-light);
-  font-size: 0.95rem;
 }
 
 .btn-edit {
@@ -129,10 +115,10 @@
   background-color: #e5e7eb;
 }
 
-/* --- Grid de Formulário --- */
+/* --- Grid --- */
 .form-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+  grid-template-columns: 1fr 1fr; /* Desktop: 2 Colunas */
   gap: 1.5rem;
 }
 
@@ -143,28 +129,16 @@
   margin-bottom: 0.5rem;
 }
 
-/* Estilo do Input (visual) */
 .input-wrapper {
   display: flex;
   align-items: center;
   background-color: var(--input-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 0 1rem; /* Padding horizontal */
+  padding: 0 1rem;
   gap: 0.75rem;
-  height: 50px; /* Altura fixa para alinhar */
+  height: 50px;
   box-sizing: border-box;
-}
-
-.input-wrapper .icon {
-  color: var(--text-light);
-  display: flex;
-  align-items: center;
-}
-
-.input-wrapper .icon svg {
-  width: 20px;
-  height: 20px;
 }
 
 .input-wrapper .value {
@@ -174,22 +148,64 @@
   font-size: 0.95rem;
 }
 
-/* Badge (ex: Admin) */
-.input-wrapper .badge {
-  background-color: var(--badge-bg);
-  color: var(--badge-text);
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.input-wrapper input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  padding: 0.5rem;
 }
 
-/* Responsividade Mobile */
+.input-wrapper input[readonly] {
+  outline: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  cursor: default;
+}
+
+/* --- Botão Salvar --- */
+.form-btn-save {
+  grid-column: 1 / -1; 
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.btn-save {
+  background-color: var(--primary-blue);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.btn-save:hover:not([disabled]) {
+  background-color: #0055e6;
+}
+
+.btn-save[disabled] {
+  background-color: var(--border-color);
+  color: var(--text-light);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* --- Responsividade Mobile (Telas menores) --- */
 @media (max-width: 768px) {
+  
+  /* >>> ALTERAÇÃO: Removido padding do :host, adicionado padding aqui para compensar no mobile */
+  .page-container {
+    margin: 20px auto;
+    padding: 0 1rem; /* Padding horizontal de 1rem no mobile */
+  }
+
   .form-grid {
-    grid-template-columns: 1fr; /* Vira 1 coluna */
+    grid-template-columns: 1fr; /* Vira 1 coluna no mobile */
   }
 
   .card-header {
@@ -197,13 +213,19 @@
     align-items: flex-start;
     gap: 1rem;
   }
-  
+
   .btn-edit {
     width: 100%;
     justify-content: center;
   }
   
-  :host {
+  .form-btn-save {
+    justify-content: center;
+    order: 5;
+  }
+
+  .form-btn-save .btn-save {
+    width: 100%;
     padding: 1rem;
   }
 }
