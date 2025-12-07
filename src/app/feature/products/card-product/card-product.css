@@ -1,0 +1,140 @@
+/* Container do Card */
+.card {
+  background-color: #ffffff;
+  border: 1px solid #f1f1f1;
+  border-radius: 16px; /* Bordas bem arredondadas */
+  overflow: hidden; /* Garante que a imagem respeite a borda */
+  width: 100%;
+  max-width: 320px; /* Largura similar à imagem */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Placeholder da Imagem (Azul claro no topo) */
+.card-image-placeholder {
+  width: 100%;
+  height: 180px; /* Altura da área da imagem */
+  background-color: #eaf6ff; /* Azul bem clarinho igual da imagem */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Corpo do Card */
+.card-content {
+  padding: 16px;
+}
+
+/* Título */
+.product-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Tag (Categoria) */
+.product-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.product-tag i {
+  font-size: 12px;
+  width: 12px;
+  height: 12px;
+}
+
+/* Descrição */
+.product-description {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+  
+  /* Limita a 2 linhas com reticências (...) */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Avaliação */
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.stars {
+  display: flex;
+  color: #fbbf24; /* Amarelo ouro */
+  gap: 2px;
+}
+
+.stars i {
+  width: 16px;
+  height: 16px;
+  fill: currentColor; /* Preenche a estrela */
+}
+
+.rating-count {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* Rodapé (Preço e Botão) */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto; /* Empurra para o fundo se o card esticar */
+}
+
+.product-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* Botão Carrinho */
+.add-cart-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #0265ff; /* Azul vibrante */
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-cart-btn:hover {
+  background-color: #0056d6;
+}
+
+.add-cart-btn i {
+  width: 20px;
+  height: 20px;
+}

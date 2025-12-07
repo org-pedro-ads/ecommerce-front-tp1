@@ -7,16 +7,18 @@ import { RegisterProducts } from './feature/products/register-products/register-
 import { EditProducts } from './feature/products/edit-products/edit-products';
 import { Catalog } from './feature/products/catalog/catalog';
 import { ShoppingCart } from './feature/products/shopping-cart/shopping-cart';
+import { EditUser } from './feature/user/edit-user/edit-user';
 
 export const routes: Routes = [
     {path: '', component: Login},
     {path: 'products/product-management/list', component: ListProducts},
     {path: 'products/product-management/register-products', component: RegisterProducts},
     {path: 'products/product-management/edit-products/:id', component: EditProducts},
-    {path: 'products', component: ListProducts},
+    {path: 'products', component: Catalog},
     {path: 'products/catalog', component: Catalog },
     {path: 'login', component: Login},
     {path: 'register', component: Register},
     {path: 'carrinho', component: ShoppingCart},
+    {path: 'user/edit', component: EditUser},
     {path: '**', component: InvalidPage}
 ];

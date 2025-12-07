@@ -1,1 +1,37 @@
-<p>card-product works!</p>
+<div class="card">
+  <div class="card-image-placeholder">
+    </div>
+
+  <div class="card-content">
+    
+    <h3 class="product-title">{{ produto.nome }}</h3>
+
+    <div class="product-tag">
+      <i class="lucide lucide-tag"></i> <span>{{ produto.categoria }}</span>
+    </div>
+
+    <p class="product-description">
+      {{ produto.descricao }}
+    </p>
+
+    <div class="product-rating">
+      <div class="stars">
+        <i class="lucide lucide-star filled"></i>
+        <i class="lucide lucide-star filled"></i>
+        <i class="lucide lucide-star filled"></i>
+        <i class="lucide lucide-star filled"></i>
+        <i class="lucide lucide-star"></i>
+      </div>
+      <span class="rating-count">({{ produto.avaliacoes }})</span>
+    </div>
+
+    <div class="card-footer">
+      <span class="product-price">R$ {{ produto.preco }}</span>
+      
+      <button class="add-cart-btn">
+        <i class="lucide lucide-shopping-cart"></i>
+      </button>
+    </div>
+
+  </div>
+</div>

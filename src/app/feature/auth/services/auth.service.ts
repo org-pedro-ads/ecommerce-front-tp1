@@ -1,22 +1,41 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
+import { UserService } from '../../../core/services/user/user.service';
+import { User } from '../../../models/user';
+import { MessageService } from '../../../core/services/message/message.service';
+import { LoggerService } from '../../../core/services/logger/logger.service';
+import { map, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class AuthService {
-  private users: any[] = [];
 
-  login(email: string, password: string): boolean {
-    const user = this.users.find(u => u.email === email && u.password === password);
-    return !!user;
-  }
+  private userService = inject(UserService);
+  private messageService = inject(MessageService);
+  private logger = inject(LoggerService);
 
-  register(user: any): boolean {
-    const exists = this.users.some(u => u.email === user.email);
-    if (exists) return false;
+  idUser = signal<number | null>(null);
 
-    this.users.push(user);
-    return true;
+  login(email: string, password: string): Observable<boolean> {
+    this.logger.info('[AuthService] login - Tentando logar usuário com email:', email);
+    this.messageService.add('Tentando logar...', 'info');
+
+    return this.userService.login(email, password).pipe(
+      
+      tap(user => {
+        if (user) {
+          this.messageService.add('Login realizado com sucesso!', 'success');
+          this.logger.info('[AuthService] login - Sucesso! ID:', user.id);
+          this.idUser.set(user.id); 
+        } else {
+          this.messageService.add('Email ou senha incorretos.', 'error');
+          this.logger.warn('[AuthService] login - Falha no login para o email:', email);
+          this.idUser.set(null);
+        }
+      }),
+
+      map(user => !!user) 
+    );
   }
 }

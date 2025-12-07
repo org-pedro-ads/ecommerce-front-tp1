@@ -35,15 +35,23 @@
           <label for="tipoUsuario">Tipo de Usuário</label>
           <select id="tipoUsuario" name="tipoUsuario" ngModel required>
             <option value="" disabled selected>Selecione uma opção</option>
-            <option value="cliente">Cliente</option>
-            <option value="lojista">Lojista</option>
+            <option value="false">Cliente</option>
+            <option value="true">Admin</option>
           </select>
         </div>
 
         <div class="buttons">
-            <button type="submit" class="btn-primary" [disabled]="!registerForm.valid">
-               Registrar
-            </button>
+            <div class="actions">
+              <button type="submit" [disabled]="enviando()" class="btn-submit">
+                
+                @if (enviando()) {
+                  <span class="spinner"></span>
+                  <span>Aguarde...</span>
+                } @else {
+                  <span>Cadastrar</span>
+                }
+              </button>
+            </div>
             <button type="button" class="btn-secondary">
                Cancelar
             </button>
