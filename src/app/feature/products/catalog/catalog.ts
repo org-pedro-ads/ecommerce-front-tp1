@@ -9,10 +9,12 @@ import { CardProduct } from '../card-product/card-product';
 import { FormsModule } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
 import { AuthService } from '../../auth/services/auth.service';
+import { ProductModalComponent } from '../product-modal/product-modal';
+import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-catalog',
-  imports: [Header, Footer, CardProduct, FormsModule, RouterLink],
+  imports: [Header, Footer, CardProduct, FormsModule, RouterLink, ProductModalComponent, LucideAngularModule],
   templateUrl: './catalog.html',
   styleUrl: './catalog.css',
 })
@@ -25,6 +27,7 @@ export class Catalog {
   loading = signal(true);
   categoriaSelecionada = signal<string | null>(null);
   ordenarPor = signal<string>('nome');
+  produtoSelecionado: Product | null = null;
 
   private products = toSignal<Product[], Product[]>(this.productService.getProducts().pipe(
     finalize(() => this.loading.set(false))
@@ -74,5 +77,15 @@ export class Catalog {
 
   isAdmin() {
     return this.authService.isAdmin();
+  }
+
+  abrirModal(produto: any) {
+    this.produtoSelecionado = produto;
+    document.body.style.overflow = 'hidden'; 
+  }
+
+  fecharModal() {
+    this.produtoSelecionado = null;
+    document.body.style.overflow = 'auto';
   }
 }

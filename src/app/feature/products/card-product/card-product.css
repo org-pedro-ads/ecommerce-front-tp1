@@ -2,13 +2,17 @@
 .card {
   background-color: #ffffff;
   border: 1px solid #f1f1f1;
-  border-radius: 16px; /* Bordas bem arredondadas */
-  overflow: hidden; /* Garante que a imagem respeite a borda */
+  border-radius: 16px;
+  overflow: visible;
   width: 100%;
-  max-width: 320px; /* Largura similar à imagem */
+  max-width: 320px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s, box-shadow 0.2s;
   font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column; /* Garante altura consistente */
+  height: 100%;
+  cursor: pointer;
 }
 
 .card:hover {
@@ -16,19 +20,28 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* Placeholder da Imagem (Azul claro no topo) */
+/* Imagens */
 .card-image-placeholder {
   width: 100%;
-  height: 180px; /* Altura da área da imagem */
-  background-color: #eaf6ff; /* Azul bem clarinho igual da imagem */
+  height: 180px;
+  background-color: #eaf6ff;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
 /* Corpo do Card */
 .card-content {
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 /* Título */
@@ -51,16 +64,10 @@
   padding: 4px 8px;
   border-radius: 6px;
   margin-bottom: 12px;
-  
+  align-self: flex-start; /* Não estica a tag */
   font-size: 12px;
   color: #6b7280;
   font-weight: 500;
-}
-
-.product-tag i {
-  font-size: 12px;
-  width: 12px;
-  height: 12px;
 }
 
 /* Descrição */
@@ -69,44 +76,45 @@
   color: #6b7280;
   line-height: 1.5;
   margin: 0 0 16px 0;
-  
-  /* Limita a 2 linhas com reticências (...) */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* Avaliação */
-.product-rating {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-.stars {
-  display: flex;
-  color: #fbbf24; /* Amarelo ouro */
-  gap: 2px;
-}
-
-.stars i {
-  width: 16px;
-  height: 16px;
-  fill: currentColor; /* Preenche a estrela */
-}
-
-.rating-count {
+/* Características */
+.product-caracteristics h4 {
   font-size: 13px;
-  color: #9ca3af;
+  color: #374151;
+  margin: 0 0 4px 0;
 }
 
-/* Rodapé (Preço e Botão) */
+.product-caracteristics ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px 0;
+}
+
+.product-caracteristics li {
+  font-size: 13px;
+  color: #6b7280;
+  padding-left: 10px;
+  position: relative;
+  margin-bottom: 2px;
+}
+
+.product-caracteristics li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #0265ff;
+}
+
+/* Rodapé */
 .card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: auto; /* Empurra para o fundo se o card esticar */
+  margin-top: auto;
 }
 
 .product-price {
@@ -115,12 +123,12 @@
   color: #1f2937;
 }
 
-/* Botão Carrinho */
+/* --- Botão Carrinho e Tooltip --- */
 .add-cart-btn {
   width: 40px;
   height: 40px;
   border-radius: 10px;
-  background-color: #0265ff; /* Azul vibrante */
+  background-color: #0265ff;
   color: white;
   border: none;
   display: flex;
@@ -128,13 +136,51 @@
   justify-content: center;
   cursor: pointer;
   transition: background 0.2s;
+  position: relative; /* Necessário para o tooltip */
 }
 
 .add-cart-btn:hover {
   background-color: #0056d6;
 }
 
-.add-cart-btn i {
-  width: 20px;
-  height: 20px;
+/* Estilo do Tooltip que estava faltando */
+.tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  width: 140px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 6px 0;
+  font-size: 12px;
+  
+  /* Posicionamento */
+  position: absolute;
+  z-index: 9999;
+  bottom: 115%; /* Acima do botão */
+  left: 50%;
+  transform: translateX(-50%); /* Centraliza */
+  
+  transition: opacity 0.3s;
+  pointer-events: none; /* Evita que o mouse interaja com o tooltip */
+}
+
+/* Seta do tooltip */
+.tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+  z-index: 9998;
+}
+
+/* Exibir tooltip no hover */
+.add-cart-btn:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
 }

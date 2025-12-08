@@ -55,7 +55,7 @@
     <section class="filters-container">
       
       <div class="search-box">
-        <i class="lucide lucide-search"></i>
+        <lucide-icon name="search" size="16" class="search-icon"></lucide-icon>
         <input type="text" placeholder="Buscar produtos..." />
       </div>
 
@@ -100,9 +100,16 @@
       } @else {
         <div class="product-grid">
           @for (product of listProducts(); track product.id) {
-            <app-card-product [produto]="product"></app-card-product>
+            <app-card-product [produto]="product" (click)="abrirModal(product)"></app-card-product>
           }
         </div>
+      }
+
+      @if (produtoSelecionado) {
+        <app-product-modal 
+          [produto]="produtoSelecionado" 
+          (close)="fecharModal()"> 
+        </app-product-modal>
       }
 
     </section>
