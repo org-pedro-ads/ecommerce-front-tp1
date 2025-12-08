@@ -8,7 +8,6 @@ import { LucideAngularModule, User, ShoppingCart, LogOut, Tag, Image, Package, X
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(),
-    provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(),
