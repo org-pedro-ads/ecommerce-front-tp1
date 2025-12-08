@@ -1,7 +1,10 @@
-import { Component, EventEmitter, Output, Input, signal, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Output, Input, signal, SimpleChanges, inject } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../../models/product';
+import { MessageService } from '../../../core/services/message/message.service';
+import { ShoppingCartService } from '../../../core/services/shopping-cart/shopping-cart.service';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-product-modal',
@@ -11,6 +14,10 @@ import { Product } from '../../../models/product';
   styleUrl: './product-modal.css'
 })
 export class ProductModalComponent {
+
+  private cartService = inject(ShoppingCartService);
+  private authService = inject(AuthService);
+  private message = inject(MessageService);
 
   
   @Output() close = new EventEmitter<void>();
@@ -27,5 +34,24 @@ export class ProductModalComponent {
   
   closeModal() {
     this.close.emit();
+  }
+
+
+  addCard() {
+    const userId = this.authService.idUser();
+    
+    if (!userId) {
+      this.message.add('Você precisa estar logado para adicionar produtos ao carrinho', 'error');
+      return;
+    }
+
+    this.cartService.addOrUpdateItem(userId, this.produto.id, 1).subscribe({
+      next: () => {
+        this.message.add('Produto adicionado ao carrinho!', 'success');
+      },
+      error: (err) => {
+        this.message.add('Erro ao adicionar produto ao carrinho', 'error');
+      }
+    });
   }
 }
