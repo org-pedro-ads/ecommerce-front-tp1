@@ -26,7 +26,9 @@ export class AuthService {
         if (user) {
           this.logger.info('[AuthService] login - Sucesso! ID:', user.id);
           this.idUser.set(user.id);
+          console.log(user)
           this.isAdmin.set(user.admin);
+          console.log('this admin', this.isAdmin())
         } else {
           this.logger.warn('[AuthService] login - Falha no login para o email:', email);
           this.idUser.set(null);
