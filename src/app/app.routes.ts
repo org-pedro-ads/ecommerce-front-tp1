@@ -8,6 +8,7 @@ import { EditProducts } from './feature/products/edit-products/edit-products';
 import { Catalog } from './feature/products/catalog/catalog';
 import { ShoppingCart } from './feature/products/shopping-cart/shopping-cart';
 import { EditUser } from './feature/user/edit-user/edit-user';
+import { HistoryOrders } from './feature/products/history-orders/history-orders';
 
 export const routes: Routes = [
     {path: '', component: Login},
@@ -20,5 +21,6 @@ export const routes: Routes = [
     {path: 'register', component: Register},
     {path: 'carrinho', component: ShoppingCart},
     {path: 'user/edit', component: EditUser},
+    {path: 'meus-pedidos', component: HistoryOrders},
     {path: '**', component: InvalidPage}
 ];
