@@ -9,6 +9,7 @@ import { OrderItem } from '../../../models/orderItem';
 import { Header } from '../../../core/header/header';
 import { Footer } from '../../../core/footer/footer';
 import { QuantidadeControle } from '../../../core/shared/quantidade-controle/quantidade-controle';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -18,13 +19,26 @@ import { QuantidadeControle } from '../../../core/shared/quantidade-controle/qua
 })
 export class ShoppingCart {
   private loading = signal(true);
-  private shoppingtCart = inject(ShoppingCartService);
+  private shoppingCart = inject(ShoppingCartService);
+  private authService = inject(AuthService);
   private router = inject(Router);
 
-  itensCart = toSignal<Order | null>(this.shoppingtCart.getCartByUser(1)
-  .pipe(finalize(() => this.loading.set(false))), {
-    initialValue: null
-  });
+  itensCart = this.shoppingCart.cart;
+  userId = this.authService.idUser()!;
+
+  constructor() {
+    const userId = this.authService.idUser();
+
+    if (userId !== null) {
+      this.shoppingCart
+        .getCartByUser(userId)
+        .pipe(finalize(() => this.loading.set(false)))
+        .subscribe();
+    } else {
+      this.loading.set(false);
+    }
+  }
+
 
   subtotal = computed(() =>{
       let sum = 0;
@@ -40,29 +54,30 @@ export class ShoppingCart {
   
   total = computed(() => this.subtotal() + this.taxes());
   updateCartQuantity(productId: number, quantity: number) {
-    this.shoppingtCart.updateItem(productId, quantity);
+    this.shoppingCart.addOrUpdateItem(1, productId, quantity)
+    .subscribe();
   }
 
-  changeQuantity(id: number, quantidade: number, delta: number) {
-    const novaQuantidade = quantidade + delta;
-  
-    if (novaQuantidade < 1) return;
+  changeQuantity(id: number, quantidade: number, newQuantity: number) {
+
+    if (newQuantity < 1) return;
     
     this.updateCartQuantity(
       id,
-      novaQuantidade
+      newQuantity
     );
   }
 
   removeFromCart(productId: number) {
-    this.shoppingtCart.removeItem(productId);
+    this.shoppingCart.removeItem(productId).subscribe();
   }
 
   checkout() {
     if (this.itensCart() === null) return;
 
-    this.shoppingtCart.checkout(1);
-    this.router.navigate(['/history']);
+    this.shoppingCart.checkout(this.userId).subscribe(() => {
+      this.navigate('/products/catalog');
+    });
   }
 
   navigate(route: string) {
