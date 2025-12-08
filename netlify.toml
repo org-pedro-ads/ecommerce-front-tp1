@@ -1,14 +1,9 @@
 [build]
-  # Comando padrão de build do Angular
-  command = "ng build"
-  
-  # ⚠️ IMPORTANTE: Substitua 'nome-do-seu-projeto' pelo nome real 
-  # que está no seu package.json ou na pasta dist após o build.
-  # Em Angular 17+, geralmente é "dist/nome-do-projeto/browser"
-  publish = "dist/ecommerce-front-tp1/browser"
 
-# Configuração essencial para roteamento (SPA)
-# Isso impede o erro 404 ao recarregar páginas internas (ex: /carrinho)
+command = "ng build"
+
+publish = "dist/ecommerce-front-tp1/browser"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

@@ -18,7 +18,6 @@ export class Login {
   private router = inject(Router);
 
   loading = signal(false);
-
   isLogin = true;
 
   formData = {
@@ -42,12 +41,14 @@ export class Login {
     }
 
     if (this.isLogin) {
+      this.messageService.add("Tentando logar...", "info");
       this.auth.login(this.formData.email, this.formData.password)
         .subscribe({
           next: (isLoggedIn) => {
             if (isLoggedIn) {
               this.messageService.add('Login realizado com sucesso!', 'success');
-              this.router.navigate(['/']); 
+              this.loading.set(false);
+              this.router.navigate(['/products']); 
             }
           },
           error: (err) => {
