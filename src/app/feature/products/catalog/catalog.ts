@@ -7,21 +7,27 @@ import { Footer } from "../../../core/footer/footer";
 import { finalize } from 'rxjs';
 import { CardProduct } from '../card-product/card-product';
 import { FormsModule } from "@angular/forms";
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
+import { AuthService } from '../../auth/services/auth.service';
+import { ProductModalComponent } from '../product-modal/product-modal';
+import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-catalog',
-  imports: [Header, Footer, CardProduct, FormsModule, RouterLink],
+  imports: [Header, Footer, CardProduct, FormsModule, RouterLink, ProductModalComponent, LucideAngularModule],
   templateUrl: './catalog.html',
   styleUrl: './catalog.css',
 })
 export class Catalog {
 
   private productService = inject(ProductService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
   
   loading = signal(true);
   categoriaSelecionada = signal<string | null>(null);
   ordenarPor = signal<string>('nome');
+  produtoSelecionado: Product | null = null;
 
   private products = toSignal<Product[], Product[]>(this.productService.getProducts().pipe(
     finalize(() => this.loading.set(false))
@@ -61,5 +67,25 @@ export class Catalog {
     this.categoriaSelecionada.set(categoria);
   }
 
+  onClickMeuPerfil() {
+    if(!this.authService.idUser()) {
+      this.router.navigate(['']);
+    } else {
+      this.router.navigate(['/user/edit']);
+    }
+  }
 
+  isAdmin() {
+    return this.authService.isAdmin();
+  }
+
+  abrirModal(produto: any) {
+    this.produtoSelecionado = produto;
+    document.body.style.overflow = 'hidden'; 
+  }
+
+  fecharModal() {
+    this.produtoSelecionado = null;
+    document.body.style.overflow = 'auto';
+  }
 }

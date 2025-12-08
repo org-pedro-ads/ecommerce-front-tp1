@@ -11,15 +11,15 @@
 
   <div class="right-actions">
     
-    <button class="user-pill" routerLink="/user/edit">
-      <lucide-icon name="user"></lucide-icon><span>Usuário Demo</span>
+    <button class="user-pill" (click)="userButtonClick()">
+      <lucide-icon name="user"></lucide-icon><span>{{ userName() }}</span>
     </button>
 
-    <button class="icon-btn">
+    <button class="icon-btn" routerLink="/carrinho">
       <lucide-icon name="shopping-cart"></lucide-icon> 
     </button>
 
-    <button class="exit-btn">
+    <button class="exit-btn" (click)="logout()">
       <lucide-icon name="log-out"></lucide-icon> <span>Sair</span>
     </button>
 

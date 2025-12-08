@@ -13,7 +13,7 @@ export class ProductService {
   private logger = inject(LoggerService);
   private http = inject(HttpClient);
 
-  private apiUrl = 'https://ecommerce-api-tp1.onrender.com/api/usuarios/';
+  private apiUrl = 'https://ecommerce-api-tp1.onrender.com/api/produtos';
   private idUsuario = '1';
 
   getProducts(): Observable<Product[]> {

@@ -12,7 +12,7 @@ export class Product {
     "LIVROS"      |
     "MOVEIS"      |
     "ESPORTE";
-
+  caracteristicas!: string[];
 }
 
 export class ProductMapper {
@@ -24,6 +24,7 @@ export class ProductMapper {
     product.preco = json.preco;
     product.quantidadeEstoque = json.quantidadeEstoque;
     product.categoria = json.categoria;
+    product.caracteristicas = json.caracteristicas || [];
     return product;
   }
 

@@ -98,37 +98,37 @@
   margin-bottom: 32px;
 }
 
-/* Campo de Busca */
-/* Campo de Busca */
 .search-box {
-  position: relative;
-  width: 100%;
-}
-
-.search-box i {
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #9ca3af;
-  width: 20px;
-  pointer-events: none; /* Garante que o clique passe pelo ícone e vá para o input */
+  display: flex;        
+  align-items: center;    
+  gap: 10px;              
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  width: 100%;             /* Ou defina uma largura fixa, ex: 300px */
+  box-sizing: border-box;
 }
 
 .search-box input {
-  width: 100%; /* MUDADO DE 90% PARA 100% */
-  box-sizing: border-box; /* IMPORTANTE: Inclui o padding no cálculo da largura */
-  padding: 14px 14px 14px 44px; /* Aumentei o padding da esquerda para o texto não ficar em cima do ícone */
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  font-size: 15px;
-  outline: none;
-  background-color: #ffffff;
+  border: none;            /* Remove a borda padrão do navegador */
+  outline: none;           /* Remove a linha azul ao clicar */
+  background: transparent; /* Fundo transparente para herdar o branco do pai */
+  width: 100%;             /* Ocupa todo o espaço restante */
+  font-size: 14px;
+  color: #374151;
 }
 
-.search-box input:focus {
-  border-color: #0265ff;
-  box-shadow: 0 0 0 3px rgba(2, 101, 255, 0.1);
+.search-icon {
+  color: #9ca3af;          /* Cor cinza suave para o ícone */
+  flex-shrink: 0;          /* Impede o ícone de ser "esmagado" */
+}
+
+
+
+.search-box:focus-within {
+  border-color: #0066ff;   /* Muda a cor da borda quando clica no input */
+  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);
 }
 
 /* Dropdown de Categorias */

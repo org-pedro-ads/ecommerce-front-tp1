@@ -9,7 +9,7 @@
         <span>Catálogo</span>
       </a>
       
-      <a class="nav-item">
+      <a class="nav-item" routerLink="/carrinho">
         <i class="lucide lucide-shopping-cart"></i>
         <span>Carrinho</span>
       </a>
@@ -19,22 +19,27 @@
         <span>Meus Pedidos</span>
       </a>
 
-      <a routerLink="/user/edit" class="nav-item">
+      <a (click)="onClickMeuPerfil()" class="nav-item">
         <i class="lucide lucide-user"></i>
         <span>Meu Perfil</span>
       </a>
 
       <div class="nav-divider"></div>
-
-      <a routerLink="/products/product-management/register-products" class="nav-item">
-        <i class="lucide lucide-plus"></i>
-        <span>Cadastrar Produtos</span>
-      </a>
-
-      <a routerLink="/products/product-management/list" class="nav-item">
-        <i class="lucide lucide-settings"></i>
-        <span>Gerenciar Produtos</span>
-      </a>
+      
+      @if(isAdmin()) {
+        <div class="admin-section">
+          <span class="nav-section-title">Administração</span>
+          <a routerLink="/products/product-management/register-products" class="nav-item">
+            <i class="lucide lucide-plus"></i>
+            <span>Cadastrar Produtos</span>
+          </a>
+    
+          <a routerLink="/products/product-management/list" class="nav-item">
+            <i class="lucide lucide-settings"></i>
+            <span>Gerenciar Produtos</span>
+          </a>
+        </div>
+      }
     </nav>
   </aside>
 
@@ -50,7 +55,7 @@
     <section class="filters-container">
       
       <div class="search-box">
-        <i class="lucide lucide-search"></i>
+        <lucide-icon name="search" size="16" class="search-icon"></lucide-icon>
         <input type="text" placeholder="Buscar produtos..." />
       </div>
 
@@ -95,9 +100,16 @@
       } @else {
         <div class="product-grid">
           @for (product of listProducts(); track product.id) {
-            <app-card-product [produto]="product"></app-card-product>
+            <app-card-product [produto]="product" (click)="abrirModal(product)"></app-card-product>
           }
         </div>
+      }
+
+      @if (produtoSelecionado) {
+        <app-product-modal 
+          [produto]="produtoSelecionado" 
+          (close)="fecharModal()"> 
+        </app-product-modal>
       }
 
     </section>

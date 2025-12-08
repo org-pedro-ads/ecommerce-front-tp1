@@ -30,7 +30,7 @@ export class UserService {
     return this.http.get<User>(`${this.apiUrl}/${id}`);
   }
 
-  updateUser(id: string, user: Partial<User>): Observable<User> {
+  updateUser(id: number, user: Partial<User>): Observable<User> {
     this.logger.info(`[UserService] updateUser - Atualizando usuário com ID: ${id}`);
     this.logger.info('[UserService] updateUser - Dados atualizados do usuário:', user);
     return this.http.put<User>(`${this.apiUrl}/${id}`, user);

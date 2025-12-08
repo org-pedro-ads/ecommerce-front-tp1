@@ -1,0 +1,64 @@
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    
+    <button class="close-btn" (click)="closeModal()">
+      <lucide-icon name="x"></lucide-icon>
+    </button>
+
+    <div class="modal-header">
+      <h2>{{ produto.nome }}</h2>
+      
+      <div class="tags-row">
+        <span class="tag-category">
+          <lucide-icon name="tag" size="14"></lucide-icon> {{ produto.categoria }}
+        </span>
+        
+        @if(estoque() > 0) {
+          <span class="tag-stock">Em estoque</span>
+        } @else {
+          <span class="tag-stock" style="background-color: #fee2e2; color: #991b1b;">Esgotado</span>
+        }
+      </div>
+    </div>
+
+    <div class="modal-body">
+      
+      <div class="image-column">
+        <div class="image-placeholder">
+            <lucide-icon name="package" size="64" color="#60a5fa"></lucide-icon>
+        </div>
+    </div>
+
+      <div class="details-column">
+        
+        <div class="price">R$ {{ produto.preco }}</div>
+
+        <p class="description">
+          {{ produto.descricao }}
+        </p>
+
+        @if(produto.caracteristicas && produto.caracteristicas.length > 0) {
+            <div class="characteristics"> 
+                <h3>Características:</h3>
+                <ul>
+                    @for(carac of produto.caracteristicas; track carac) {
+                    <li>{{ carac }}</li>
+                    }
+                </ul>
+            </div>
+        }
+
+        <div class="stock-info">
+          <lucide-icon name="package" size="18"></lucide-icon>
+          <span>{{ estoque() }} unidades em estoque</span>
+        </div>
+
+        <button class="btn-add-cart" [disabled]="estoque() === 0">
+          <lucide-icon name="shopping-cart" size="20"></lucide-icon>
+          Adicionar ao Carrinho
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>
