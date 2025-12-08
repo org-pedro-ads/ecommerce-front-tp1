@@ -1,14 +1,14 @@
 <div class="card">
   @if (produto.imagem) {
-    <img [src]="produto.imagem" [alt]="produto.nome" class="card-image">
+  <img [src]="produto.imagem" [alt]="produto.nome" class="card-image">
   } @else {
-    <div class="card-image-placeholder">
-      <lucide-icon name="image" color="#bfdbfe"></lucide-icon>
-    </div>
+  <div class="card-image-placeholder">
+    <lucide-icon name="image" color="#bfdbfe"></lucide-icon>
+  </div>
   }
 
   <div class="card-content">
-    
+
     <h3 class="product-title">{{ produto.nome }}</h3>
 
     <div class="product-tag">
@@ -20,20 +20,20 @@
     </p>
 
     @if (produto.caracteristicas && produto.caracteristicas.length > 0) {
-      <div class="product-caracteristics">
-        <h4>Características:</h4>
-        <ul>
-          @for (caracteristica of produto.caracteristicas; track caracteristica) {
-            <li>{{ caracteristica }}</li>
-          }
-        </ul>
-      </div>
+    <div class="product-caracteristics">
+      <h4>Características:</h4>
+      <ul>
+        @for (caracteristica of produto.caracteristicas; track caracteristica) {
+        <li>{{ caracteristica }}</li>
+        }
+      </ul>
+    </div>
     }
 
     <div class="card-footer">
       <span class="product-price">R$ {{ produto.preco }}</span>
-      
-      <button class="add-cart-btn">
+
+      <button class="add-cart-btn" (click)="addCard($event)">
         <lucide-icon name="shopping-cart"></lucide-icon>
         <span class="tooltip-text">Adicionar ao carrinho</span>
       </button>

@@ -1,14 +1,21 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
+import { ShoppingCartService } from '../../../core/services/shopping-cart/shopping-cart.service';
+import { AuthService } from '../../auth/services/auth.service';
+import { MessageService } from '../../../core/services/message/message.service';
 
 @Component({
   selector: 'app-card-product',
-  standalone: true, // Adicionado se for standalone
+  standalone: true,
   imports: [LucideAngularModule],
   templateUrl: './card-product.html',
   styleUrl: './card-product.css',
 })
 export class CardProduct {
+
+  private cartService = inject(ShoppingCartService);
+  private authService = inject(AuthService);
+  private message = inject(MessageService);
 
   @Input() produto: any = {
     nome: 'Produto Exemplo',
@@ -18,4 +25,24 @@ export class CardProduct {
     quantidadeEstoque: 10,
     caracteristicas: ['Rápido', 'Durável', 'Econômico'],
   };
+
+  addCard(event: MouseEvent) {
+    event.stopPropagation();
+    
+    const userId = this.authService.idUser();
+    
+    if (!userId) {
+      this.message.add('Você precisa estar logado para adicionar produtos ao carrinho', 'error');
+      return;
+    }
+
+    this.cartService.addOrUpdateItem(userId, this.produto.id, 1).subscribe({
+      next: () => {
+        this.message.add('Produto adicionado ao carrinho!', 'success');
+      },
+      error: (err) => {
+        this.message.add('Erro ao adicionar produto ao carrinho', 'error');
+      }
+    });
+  }
 }
