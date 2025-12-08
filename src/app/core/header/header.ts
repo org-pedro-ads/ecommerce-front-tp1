@@ -5,7 +5,8 @@ import { ShoppingCart, LogOut, User as LucideUser, LucideAngularModule } from 'l
 import { UserService } from '../services/user/user.service';
 import { AuthService } from '../../feature/auth/services/auth.service';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { of, switchMap } from 'rxjs';
+import { of, switchMap, Observable } from 'rxjs';
+import { ShoppingCartService } from '../services/shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-header',
@@ -39,11 +40,14 @@ export class Header {
   }
 
   private idUser$ = toObservable(this.idUser);
+  private cartService = inject(ShoppingCartService);
+  private cart$ = this.cartService.cart;
+  private qtdeCart = computed(() => this.cart$()?.itens.length || 0);
   
   private userData = toSignal(
     this.idUser$.pipe(
-      switchMap(id => {
-        if (id) {
+      switchMap((id): Observable<User | null> => {
+        if (id !== null) {
           return this.userService.getUserById(id);
         }
         return of(null);
@@ -66,5 +70,9 @@ export class Header {
   logout() {
     this.authService.idUser.set(null);
     this.router.navigate(['/']);
+  }
+
+  getQtdeCart() {
+    return this.qtdeCart();
   }
 }

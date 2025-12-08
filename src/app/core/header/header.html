@@ -1,8 +1,8 @@
 <header id="header-section">
-  
+
   <div class="logo-area">
     <div class="logo-icon">E</div>
-    
+
     <div class="logo-text-group">
       <h1 class="logo-title" routerLink="/products/catalog">E-Commerce</h1>
       <p class="logo-subtitle" routerLink="/products/catalog">Sistema Completo</p>
@@ -10,13 +10,14 @@
   </div>
 
   <div class="right-actions">
-    
+
     <button class="user-pill" (click)="userButtonClick()">
       <lucide-icon name="user"></lucide-icon><span>{{ userName() }}</span>
     </button>
 
     <button class="icon-btn" routerLink="/carrinho">
-      <lucide-icon name="shopping-cart"></lucide-icon> 
+      <lucide-icon name="shopping-cart"></lucide-icon>
+      <span>{{ getQtdeCart() }}</span>
     </button>
 
     <button class="exit-btn" (click)="logout()">
