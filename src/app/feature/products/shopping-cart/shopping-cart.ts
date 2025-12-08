@@ -29,9 +29,9 @@ export class ShoppingCart {
   constructor() {
     const userId = this.authService.idUser();
 
-    if (userId !== null) {
+    if (true) {
       this.shoppingCart
-        .getCartByUser(userId)
+        .getCartByUser(1)
         .pipe(finalize(() => this.loading.set(false)))
         .subscribe();
     } else {
@@ -75,7 +75,7 @@ export class ShoppingCart {
   checkout() {
     if (this.itensCart() === null) return;
 
-    this.shoppingCart.checkout(this.userId).subscribe(() => {
+    this.shoppingCart.checkout(1).subscribe(() => {
       this.navigate('/products/catalog');
     });
   }
