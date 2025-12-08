@@ -1,0 +1,31 @@
+<app-header></app-header>
+
+<div class="container">
+  <h1>Meus Pedidos</h1>
+
+  <section class="filters-container">
+    <div class="search-box">
+      <lucide-icon name="search" size="16" class="search-icon"></lucide-icon>
+      <input type="text" placeholder="Buscar pedidos..." />
+    </div>
+
+    <div class="results-bar">
+      <span class="results-count">
+        {{ listOrders().length }} pedidos encontrados
+      </span>
+    </div>
+  </section>
+
+  <div class="orders">
+    @for (order of listOrders(); track order.id) {
+    <div class="order">
+      <h2>Pedido {{ order.id }}</h2>
+      <p>Data: {{ order.dataPedido }}</p>
+      <p>Status: {{ order.status }}</p>
+    </div>
+    }
+  </div>
+
+</div>
+
+<app-footer></app-footer>

@@ -17,10 +17,10 @@ export const routes: Routes = [
     {path: 'products/product-management/edit-products/:id', component: EditProducts},
     {path: 'products', component: Catalog},
     {path: 'products/catalog', component: Catalog },
+    {path: 'products/history-orders', component: HistoryOrders},
     {path: 'login', component: Login},
     {path: 'register', component: Register},
-    {path: 'carrinho', component: ShoppingCart},
+    {path: 'carrinho', component: ShoppingCart},    
     {path: 'user/edit', component: EditUser},
-    {path: 'meus-pedidos', component: HistoryOrders},
     {path: '**', component: InvalidPage}
 ];
