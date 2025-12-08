@@ -1,19 +1,17 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { Order } from '../../../models/order';
 import { finalize } from 'rxjs';
 import { ShoppingCartService } from '../../../core/services/shopping-cart/shopping-cart.service';
-import { OrderItem } from '../../../models/orderItem';
 import { Header } from '../../../core/header/header';
 import { Footer } from '../../../core/footer/footer';
 import { QuantidadeControle } from '../../../core/shared/quantidade-controle/quantidade-controle';
 import { AuthService } from '../../auth/services/auth.service';
+import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-shopping-cart',
-  imports: [CommonModule, Header, Footer, QuantidadeControle],
+  imports: [CommonModule, Header, Footer, QuantidadeControle, LucideAngularModule],
   templateUrl: './shopping-cart.html',
   styleUrl: './shopping-cart.css',
 })
