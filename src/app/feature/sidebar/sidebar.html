@@ -1,0 +1,42 @@
+<aside class="sidebar">
+  <nav class="sidebar-nav">
+    
+    <a class="nav-item" routerLink="/products" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <i class="lucide lucide-store"></i>
+      <span>Catálogo</span>
+    </a>
+
+    <a class="nav-item" routerLink="/carrinho" routerLinkActive="active">
+      <i class="lucide lucide-shopping-cart"></i>
+      <span>Carrinho</span>
+    </a>
+
+    <a class="nav-item" routerLink="/products/history-orders" routerLinkActive="active">
+      <i class="lucide lucide-clipboard-list"></i>
+      <span>Meus Pedidos</span>
+    </a>
+
+    <a (click)="onClickMeuPerfil()" class="nav-item" [class.active]="isActive('/user/edit')">
+      <i class="lucide lucide-user"></i>
+      <span>Meu Perfil</span>
+    </a>
+
+    <div class="nav-divider"></div>
+
+    @if(isAdmin()) {
+    <div class="admin-section">
+      <span class="nav-section-title">Administração</span>
+      
+      <a routerLink="/products/product-management/register-products" class="nav-item" routerLinkActive="active">
+        <i class="lucide lucide-plus"></i>
+        <span>Cadastrar Produtos</span>
+      </a>
+
+      <a routerLink="/products/product-management/list" class="nav-item" routerLinkActive="active">
+        <i class="lucide lucide-settings"></i>
+        <span>Gerenciar Produtos</span>
+      </a>
+    </div>
+    }
+  </nav>
+</aside>

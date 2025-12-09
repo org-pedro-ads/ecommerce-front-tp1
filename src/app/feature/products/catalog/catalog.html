@@ -2,46 +2,7 @@
 
 <div class="layout-container">
 
-  <aside class="sidebar">
-    <nav class="sidebar-nav">
-      <a class="nav-item active">
-        <i class="lucide lucide-store"></i>
-        <span>Catálogo</span>
-      </a>
-
-      <a class="nav-item" routerLink="/carrinho">
-        <i class="lucide lucide-shopping-cart"></i>
-        <span>Carrinho</span>
-      </a>
-
-      <a class="nav-item" routerLink="/products/history-orders">
-        <i class="lucide lucide-clipboard-list"></i>
-        <span>Meus Pedidos</span>
-      </a>
-
-      <a (click)="onClickMeuPerfil()" class="nav-item">
-        <i class="lucide lucide-user"></i>
-        <span>Meu Perfil</span>
-      </a>
-
-      <div class="nav-divider"></div>
-
-      @if(isAdmin()) {
-      <div class="admin-section">
-        <span class="nav-section-title">Administração</span>
-        <a routerLink="/products/product-management/register-products" class="nav-item">
-          <i class="lucide lucide-plus"></i>
-          <span>Cadastrar Produtos</span>
-        </a>
-
-        <a routerLink="/products/product-management/list" class="nav-item">
-          <i class="lucide lucide-settings"></i>
-          <span>Gerenciar Produtos</span>
-        </a>
-      </div>
-      }
-    </nav>
-  </aside>
+  <app-sidebar></app-sidebar>
 
   <main class="content-area">
 
@@ -54,7 +15,6 @@
 
     <section class="filters-container">
 
-      <!-- ATUALIZADO: Input de busca conectado ao signal -->
       <div class="search-box">
         <lucide-icon name="search" size="16" class="search-icon"></lucide-icon>
         <input 
@@ -92,7 +52,6 @@
           </select>
         </div>
 
-        <!-- NOVO: Botão para limpar filtros -->
         @if (termoBusca() || categoriaSelecionada()) {
           <button class="btn-clear-filters" (click)="limparFiltros()">
             <lucide-icon name="x" size="16"></lucide-icon>

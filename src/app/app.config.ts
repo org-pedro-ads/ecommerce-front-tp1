@@ -2,7 +2,7 @@ import { ApplicationConfig, importProvidersFrom, provideBrowserGlobalErrorListen
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
-import { LucideAngularModule, User, ShoppingCart, LogOut, Tag, Image, Package, X, Search, Trash2, LogIn, UserPlus, Eye, Calendar } from 'lucide-angular';
+import { LucideAngularModule, User, ShoppingCart, LogOut, Tag, Image, Package, X, Search, Trash2, LogIn, UserPlus, Eye, Calendar, Loader } from 'lucide-angular';
 
 
 export const appConfig: ApplicationConfig = {
@@ -12,6 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(),
     importProvidersFrom(LucideAngularModule.pick({ User, ShoppingCart, LogOut, Tag, Image, 
-      Package, X, Search, Trash2, LogIn, UserPlus, Eye, Calendar }))
+      Package, X, Search, Trash2, LogIn, UserPlus, Eye, Calendar, Loader }))
   ]
 };

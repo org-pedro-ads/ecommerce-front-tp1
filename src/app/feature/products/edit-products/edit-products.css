@@ -1,8 +1,35 @@
-.page-container {
-  padding: 30px;
-  background: #f7f9fc;
+:host {
+  display: block;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --primary-blue: #1a73e8; /* Ajustei para o azul do seu exemplo */
+  --bg-color: #f7f9fc;
+  background-color: var(--bg-color);
+  box-sizing: border-box;
 }
 
+/* === LAYOUT PADRÃO (Com Sidebar) === */
+.layout-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: calc(100vh - 140px);
+  width: 100%;
+}
+
+.content-area {
+  flex: 1;
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* === CONTAINER DA PÁGINA (Centralizado) === */
+.page-container {
+  max-width: 800px; /* Limita a largura do formulário */
+  margin: 0 auto;
+}
+
+/* Cabeçalho Interno */
 .header-box {
   display: flex;
   align-items: center;
@@ -11,49 +38,118 @@
 }
 
 .header-box h1 {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
+  color: #1f2937;
+  margin: 0;
 }
 
 .icon-circle {
   width: 45px;
   height: 45px;
-  background: #1a73e8;
+  background: var(--primary-blue);
   border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 4px 10px rgba(26, 115, 232, 0.2);
 }
 
-.icon-circle i {
-  color: #fff;
-  font-size: 22px;
-}
-
+/* === CARD DO FORMULÁRIO === */
 .product-card {
   background: white;
   padding: 32px;
-  border-radius: 18px;
-  border: 1px solid #eee;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
+.product-card h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  color: #374151;
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 1rem;
+}
+
+/* Campos */
 .form-group {
   margin-bottom: 20px;
 }
 
-/* ===== BOTÕES ===== */
+/* Grid para campos lado a lado (Preço e Estoque) */
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-group.half {
+  flex: 1;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  font-size: 15px;
+  color: #1f2937;
+  transition: all 0.2s;
+  box-sizing: border-box; /* Importante */
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary-blue);
+  outline: none;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+small {
+  display: block;
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+/* Mensagem de Erro */
+.error {
+  color: #dc2626;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+/* === BOTÕES === */
 .buttons {
   display: flex;
   gap: 16px;
+  margin-top: 32px;
 }
 
 button {
   flex: 1;
   padding: 14px;
-  border-radius: 12px;
+  border-radius: 8px;
   border: none;
   font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
   transition: 0.2s;
   display: flex;
@@ -62,46 +158,43 @@ button {
   gap: 8px;
 }
 
-/* Azul */
 .btn-primary {
-  background: #1a73e8;
+  background: var(--primary-blue);
   color: white;
 }
-.btn-primary:hover {
-  background: #1259b5;
+.btn-primary:hover:not([disabled]) {
+  background: #1557b0;
+}
+.btn-primary:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
 }
 
-/* Cinza */
 .btn-secondary {
-  background: #f0f0f5;
-  color: #444;
+  background: #f3f4f6;
+  color: #4b5563;
 }
 .btn-secondary:hover {
-  background: #e5e5ea;
+  background: #e5e7eb;
+  color: #1f2937;
 }
 
-input, select, textarea {
-  width: 100%;
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  background: #f5f6fa;
-  font-size: 15px;
-  transition: 0.2s;
-}
+/* === RESPONSIVIDADE === */
+@media (max-width: 768px) {
+  .layout-container {
+    flex-direction: column; /* Sidebar empilhada no topo */
+  }
 
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: #1a73e8;
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
-}
+  .content-area {
+    padding: 1.5rem 1rem;
+  }
 
-label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #1e1e1e;
-  font-size: 15px;
+  .product-card {
+    padding: 20px;
+  }
+
+  .form-row {
+    flex-direction: column; /* Quebra linha dos inputs duplos no mobile */
+    gap: 0;
+  }
 }

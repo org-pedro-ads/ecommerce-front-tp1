@@ -9,10 +9,11 @@ import { HistoryOrderService } from '../../../core/services/history-ordes/histor
 import { Order } from '../../../models/order';
 import { Router } from '@angular/router';
 import { ModalHistoryOrder } from '../modal-history-order/modal-history-order';
+import { SidebarComponent } from "../../sidebar/sidebar";
 
 @Component({
   selector: 'app-history-orders',
-  imports: [Header, Footer, LucideAngularModule, DatePipe, ModalHistoryOrder],
+  imports: [Header, Footer, LucideAngularModule, DatePipe, ModalHistoryOrder, SidebarComponent],
   templateUrl: './history-orders.html',
   styleUrl: './history-orders.css',
 })

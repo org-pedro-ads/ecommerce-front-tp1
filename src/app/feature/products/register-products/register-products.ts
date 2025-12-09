@@ -5,10 +5,11 @@ import { Header } from '../../../core/header/header';
 import { Footer } from '../../../core/footer/footer';
 import { Router } from '@angular/router';
 import { MessageService } from '../../../core/services/message/message.service';
+import { SidebarComponent } from "../../sidebar/sidebar";
 
 @Component({
   selector: 'app-register-products',
-  imports: [ReactiveFormsModule, Header, Footer],
+  imports: [ReactiveFormsModule, Header, Footer, SidebarComponent],
   templateUrl: './register-products.html',
   styleUrl: './register-products.css',
 })

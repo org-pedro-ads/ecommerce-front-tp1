@@ -1,116 +1,157 @@
-/* ===== GLOBAL FIX ===== */
-* {
+:host {
+  display: block;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --primary-blue: #1a73e8;
+  --bg-color: #f7f9fc;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --border-color: #e5e7eb;
+  background-color: var(--bg-color);
   box-sizing: border-box;
 }
 
-/* ===== CONTAINER DA PÁGINA ===== */
-.product-container {
-  width: 100%;
-  padding: 40px 16px;
-  background: #f7f9fc;
+/* === LAYOUT ESTRUTURAL (Sidebar + Conteúdo) === */
+.layout-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: calc(100vh - 140px);
+  width: 100%;
 }
 
-/* ===== TÍTULO E ÍCONE ===== */
-.title-box {
-  text-align: center;
+.content-area {
+  flex: 1;
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* === PAGE CONTAINER (Centralizado) === */
+.page-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* === HEADER DA PÁGINA === */
+.header-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   margin-bottom: 32px;
 }
 
 .icon-circle {
-  width: 70px;
-  height: 70px;
-  background: #1a73e8;
-  border-radius: 18px;
+  width: 56px;
+  height: 56px;
+  background: var(--primary-blue);
+  border-radius: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto 16px auto;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.2);
+  flex-shrink: 0;
 }
 
-.icon-circle i {
-  color: white;
-  font-size: 32px;
-}
-
-.title-box h1 {
-  font-size: 28px;
+.header-texts h1 {
+  font-size: 24px;
   font-weight: 700;
-  color: #1e1e1e;
+  color: var(--text-dark);
+  margin: 0 0 4px 0;
 }
 
-.title-box p {
-  color: #666;
+.header-texts p {
+  color: var(--text-light);
+  margin: 0;
+  font-size: 0.95rem;
 }
 
-/* ===== CARD ===== */
+/* === CARD DO FORMULÁRIO === */
 .product-card {
-  width: 100%;
-  max-width: 900px;
-  background: #ffffff;
+  background: white;
   padding: 32px;
-  border-radius: 18px;
-  border: 1px solid #eee;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
-/* ===== FORM ===== */
+/* Campos de Formulário */
 .form-group {
-  margin-bottom: 22px;
+  margin-bottom: 20px;
+}
+
+/* Grid para campos lado a lado (Preço e Estoque) */
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-group.half {
+  flex: 1;
 }
 
 label {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   font-weight: 600;
-  color: #1e1e1e;
-  font-size: 15px;
+  color: #374151;
+  font-size: 0.95rem;
 }
 
 input, select, textarea {
   width: 100%;
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  background: #f5f6fa;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
   font-size: 15px;
-  transition: 0.2s;
+  color: var(--text-dark);
+  transition: all 0.2s;
+  box-sizing: border-box;
 }
 
 textarea {
-  height: 140px;
-  resize: none;
+  min-height: 120px;
+  resize: vertical;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: #1a73e8;
+  border-color: var(--primary-blue);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
 }
 
 small {
-  color: #666;
-  margin-top: 4px;
+  color: var(--text-light);
+  margin-top: 6px;
   display: block;
+  font-size: 0.85rem;
 }
 
-/* ===== BOTÕES ===== */
+/* Mensagem de Erro */
+.error {
+  color: #dc2626;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+/* === BOTÕES === */
 .buttons {
   display: flex;
   gap: 16px;
+  margin-top: 32px;
 }
 
 button {
   flex: 1;
   padding: 14px;
-  border-radius: 12px;
+  border-radius: 10px;
   border: none;
   font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
   transition: 0.2s;
   display: flex;
@@ -119,25 +160,53 @@ button {
   gap: 8px;
 }
 
-/* Azul */
+/* Primário (Azul) */
 .btn-primary {
-  background: #1a73e8;
+  background: var(--primary-blue);
   color: white;
 }
-.btn-primary:hover {
-  background: #1259b5;
+
+.btn-primary:hover:not([disabled]) {
+  background: #1557b0;
+  transform: translateY(-1px);
 }
 
-/* Cinza */
+.btn-primary:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Secundário (Cinza) */
 .btn-secondary {
-  background: #f0f0f5;
-  color: #444;
+  background: #f3f4f6;
+  color: #4b5563;
 }
+
 .btn-secondary:hover {
-  background: #e5e5ea;
+  background: #e5e7eb;
+  color: var(--text-dark);
 }
 
+/* === RESPONSIVIDADE === */
+@media (max-width: 768px) {
+  .layout-container {
+    flex-direction: column; /* Sidebar no topo */
+  }
 
-div .error {
-  color: red;
+  .content-area {
+    padding: 1.5rem 1rem;
+  }
+
+  .product-card {
+    padding: 24px 20px;
+  }
+
+  .form-row {
+    flex-direction: column; /* Quebra linha dos inputs duplos no mobile */
+    gap: 0;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
 }

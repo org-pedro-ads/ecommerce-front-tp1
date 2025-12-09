@@ -9,10 +9,11 @@ import { QuantidadeControle } from '../../../core/shared/quantidade-controle/qua
 import { AuthService } from '../../auth/services/auth.service';
 import { LucideAngularModule } from 'lucide-angular';
 import { MessageService } from '../../../core/services/message/message.service';
+import { SidebarComponent } from "../../sidebar/sidebar";
 
 @Component({
   selector: 'app-shopping-cart',
-  imports: [CommonModule, Header, Footer, QuantidadeControle, LucideAngularModule],
+  imports: [CommonModule, Header, Footer, QuantidadeControle, LucideAngularModule, SidebarComponent],
   templateUrl: './shopping-cart.html',
   styleUrl: './shopping-cart.css',
 })

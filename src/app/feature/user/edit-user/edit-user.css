@@ -11,32 +11,45 @@
   display: block;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-color);
-  min-height: 100vh;
-  /* >>> ALTERAÇÃO: Removido padding: 2rem; */
+  /* A altura mínima agora é gerenciada pelo layout-container */
   box-sizing: border-box; 
 }
 
 app-edit-user {
   display: block;
-  /* >>> ALTERAÇÃO: Garante que o componente não tenha padding interno */
   padding: 0; 
 }
 
-/* >>> ALTERAÇÃO: HEADER E FOOTER com 100% (já estavam, mas garantimos) */
 app-header, app-footer {
   width: 100%;
 }
 
-.page-container {
-  max-width: 1000px;
-  /* Ajuste de margem vertical para compensar o padding removido */
-  margin: 2rem auto; 
-  /* Adiciona padding horizontal interno para telas maiores que 1000px */
-  padding: 0 2rem; 
+/* === NOVO: Estrutura de Layout com Sidebar === */
+.layout-container {
+  display: flex;
+  flex-direction: row; /* Lado a Lado */
+  align-items: stretch; /* Garante que a sidebar estique */
+  min-height: calc(100vh - 140px);
+  background-color: var(--bg-color);
+  width: 100%;
+}
+
+.content-area {
+  flex: 1; /* Ocupa o espaço restante */
+  width: 100%;
+  padding: 2rem; /* Espaçamento externo geral */
   box-sizing: border-box;
 }
 
-/* O restante do CSS foi mantido inalterado */
+/* Container centralizado (Mantido do seu original) */
+.page-container {
+  max-width: 1000px;
+  margin: 0 auto; /* Centraliza horizontalmente dentro da content-area */
+  /* Removemos padding extra aqui pois o content-area já tem */
+  box-sizing: border-box;
+}
+
+/* --- Restante do CSS (Cabeçalho, Card, Inputs) --- */
 .page-header {
   display: flex;
   align-items: center;
@@ -118,7 +131,7 @@ app-header, app-footer {
 /* --- Grid --- */
 .form-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Desktop: 2 Colunas */
+  grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
 }
 
@@ -198,14 +211,21 @@ app-header, app-footer {
 /* --- Responsividade Mobile (Telas menores) --- */
 @media (max-width: 768px) {
   
-  /* >>> ALTERAÇÃO: Removido padding do :host, adicionado padding aqui para compensar no mobile */
+  .layout-container {
+    flex-direction: column; /* Empilha a sidebar no topo */
+  }
+
+  .content-area {
+    padding: 1.5rem 1rem; /* Menos padding no mobile */
+  }
+
   .page-container {
-    margin: 20px auto;
-    padding: 0 1rem; /* Padding horizontal de 1rem no mobile */
+    margin: 0 auto;
+    width: 100%;
   }
 
   .form-grid {
-    grid-template-columns: 1fr; /* Vira 1 coluna no mobile */
+    grid-template-columns: 1fr;
   }
 
   .card-header {

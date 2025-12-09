@@ -9,10 +9,11 @@ import { Header } from "../../../core/header/header";
 import { Footer } from "../../../core/footer/footer";
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SidebarComponent } from '../../sidebar/sidebar';
 
 @Component({
   selector: 'app-edit-user',
-  imports: [LucideAngularModule, Header, Footer, ReactiveFormsModule],
+  imports: [LucideAngularModule, Header, Footer, ReactiveFormsModule, SidebarComponent],
   templateUrl: './edit-user.html',
   styleUrl: './edit-user.css',
 })

@@ -5,10 +5,11 @@ import { ProductsService, Produto } from '../products.service';
 import { Router, RouterLink } from '@angular/router';
 import { DecimalPipe, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SidebarComponent } from "../../sidebar/sidebar";
 
 @Component({
   selector: 'app-list-products',
-  imports: [Header, Footer, DecimalPipe, FormsModule, RouterLink],
+  imports: [Header, Footer, DecimalPipe, FormsModule, RouterLink, SidebarComponent],
   templateUrl: './list-products.html',
   styleUrl: './list-products.css',
 })

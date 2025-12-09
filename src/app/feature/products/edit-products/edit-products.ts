@@ -5,10 +5,11 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Header } from '../../../core/header/header';
 import { Footer } from '../../../core/footer/footer';
 import { MessageService } from '../../../core/services/message/message.service';
+import { SidebarComponent } from "../../sidebar/sidebar";
 
 @Component({
   selector: 'app-edit-products',
-  imports: [ReactiveFormsModule, Header, Footer, RouterLink],
+  imports: [ReactiveFormsModule, Header, Footer, RouterLink, SidebarComponent],
   templateUrl: './edit-products.html',
   styleUrl: './edit-products.css',
 })
