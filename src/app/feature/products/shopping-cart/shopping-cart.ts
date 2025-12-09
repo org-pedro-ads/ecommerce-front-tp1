@@ -27,13 +27,10 @@ export class ShoppingCart {
   constructor() {
     const userId = this.authService.idUser();
 
-    if (true) {
+    if (userId !== null) {
       this.shoppingCart
-        .getCartByUser(1)
-        .pipe(finalize(() => this.loading.set(false)))
+        .getCartByUser(userId)
         .subscribe();
-    } else {
-      this.loading.set(false);
     }
   }
 
@@ -73,7 +70,7 @@ export class ShoppingCart {
   checkout() {
     if (this.itensCart() === null) return;
 
-    this.shoppingCart.checkout(1).subscribe(() => {
+    this.shoppingCart.checkout(this.userId).subscribe(() => {
       this.navigate('/products/catalog');
     });
   }
