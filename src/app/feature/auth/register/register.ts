@@ -6,11 +6,12 @@ import { User } from '../../../models/user';
 import { UserService } from '../../../core/services/user/user.service';
 import { LoggerService } from '../../../core/services/logger/logger.service';
 import { MessageService } from '../../../core/services/message/message.service';
+import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, LucideAngularModule],
   templateUrl: './register.html',
   styleUrls: ['./register.css'],
 })

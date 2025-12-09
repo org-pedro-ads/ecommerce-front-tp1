@@ -1,3 +1,4 @@
+// TYPESCRIPT - catalog.component.ts
 import { Component, computed, inject, signal } from '@angular/core';
 import { Product } from '../../../models/product';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -27,6 +28,7 @@ export class Catalog {
   loading = signal(true);
   categoriaSelecionada = signal<string | null>(null);
   ordenarPor = signal<string>('nome');
+  termoBusca = signal<string>(''); // NOVO: signal para busca
   produtoSelecionado: Product | null = null;
 
   private products = toSignal<Product[], Product[]>(this.productService.getProducts().pipe(
@@ -39,22 +41,32 @@ export class Catalog {
     const categoria = this.categoriaSelecionada();
     const produtos = this.products();
     const ordenarPor = this.ordenarPor();
+    const busca = this.termoBusca().toLowerCase().trim();
+
+    let filteredProducts = [...produtos];
+
+    if (busca) {
+      filteredProducts = filteredProducts.filter(product => 
+        product.nome.toLowerCase().includes(busca)
+      );
+    }
+
+    if (categoria && categoria !== 'all') {
+      filteredProducts = filteredProducts.filter(product => 
+        product.categoria === categoria
+      );
+    }
 
     // Ordenação
-    let sortedProducts = [...produtos];
     if (ordenarPor === 'nome') {
-      sortedProducts.sort((a, b) => a.nome.localeCompare(b.nome));
+      filteredProducts.sort((a, b) => a.nome.localeCompare(b.nome));
     } else if (ordenarPor === 'preco-menor') {
-      sortedProducts.sort((a, b) => a.preco - b.preco);
+      filteredProducts.sort((a, b) => a.preco - b.preco);
     } else if (ordenarPor === 'preco-maior') {
-      sortedProducts.sort((a, b) => b.preco - a.preco);
+      filteredProducts.sort((a, b) => b.preco - a.preco);
     }
 
-    // Filtragem
-    if (!categoria || categoria === 'all') {
-      return sortedProducts.slice(0, 8);
-    }
-    return sortedProducts.filter(product => product.categoria === categoria).slice(0, 8);
+    return filteredProducts.slice(0, 8);
   });
   
   listCategories = computed(() => {
@@ -65,6 +77,18 @@ export class Catalog {
   
   onCategoriaChange(categoria: string) {
     this.categoriaSelecionada.set(categoria);
+  }
+
+  // NOVO: Método para atualizar busca
+  onBuscaChange(termo: string) {
+    this.termoBusca.set(termo);
+  }
+
+  // NOVO: Método para limpar filtros
+  limparFiltros() {
+    this.termoBusca.set('');
+    this.categoriaSelecionada.set(null);
+    this.ordenarPor.set('nome');
   }
 
   onClickMeuPerfil() {

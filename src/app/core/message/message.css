@@ -1,7 +1,7 @@
 /* Container flutuante (Toast) */
 .messages-container {
   position: fixed;
-  top: 20px;
+  top: 75px;
   right: 20px;
   z-index: 9999; /* Garante que fique acima de tudo */
   display: flex;
