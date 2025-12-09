@@ -8,6 +8,7 @@ import { Footer } from '../../../core/footer/footer';
 import { QuantidadeControle } from '../../../core/shared/quantidade-controle/quantidade-controle';
 import { AuthService } from '../../auth/services/auth.service';
 import { LucideAngularModule } from 'lucide-angular';
+import { MessageService } from '../../../core/services/message/message.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -16,10 +17,10 @@ import { LucideAngularModule } from 'lucide-angular';
   styleUrl: './shopping-cart.css',
 })
 export class ShoppingCart {
-  private loading = signal(true);
   private shoppingCart = inject(ShoppingCartService);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private messageService = inject(MessageService);
 
   itensCart = this.shoppingCart.cart;
   userId = this.authService.idUser()!;
@@ -50,7 +51,15 @@ export class ShoppingCart {
   total = computed(() => this.subtotal() + this.taxes());
   updateCartQuantity(productId: number, quantity: number) {
     this.shoppingCart.addOrUpdateItem(1, productId, quantity)
-    .subscribe();
+    .subscribe({
+      next: () => {
+        this.messageService.add('Quantidade atualizada com sucesso.', 'success');
+      },
+      error: (err) => {
+        console.error('Erro ao atualizar quantidade do carrinho', err);
+        this.messageService.add('Erro ao atualizar quantidade do carrinho.', 'error');
+      }
+    });
   }
 
   changeQuantity(id: number, quantidade: number, newQuantity: number) {
@@ -64,14 +73,29 @@ export class ShoppingCart {
   }
 
   removeFromCart(productId: number) {
-    this.shoppingCart.removeItem(productId).subscribe();
+    this.shoppingCart.removeItem(productId).subscribe({
+      next: () => {
+        this.messageService.add('Item removido do carrinho.', 'success');
+      },
+      error: (err) => {
+        console.error('Erro ao remover item do carrinho', err);
+        this.messageService.add('Erro ao remover item do carrinho.', 'error');
+      }
+    });
   }
 
   checkout() {
     if (this.itensCart() === null) return;
 
-    this.shoppingCart.checkout(this.userId).subscribe(() => {
-      this.navigate('/products/catalog');
+    this.shoppingCart.checkout(this.userId).subscribe({
+      next: () => {
+        this.messageService.add('Compra realizada com sucesso!', 'success');
+        this.router.navigate(['/products/catalog']);
+      },
+      error: (err) => {
+        console.error('Erro ao finalizar compra', err);
+        this.messageService.add('Erro ao finalizar compra.', 'error');
+      }
     });
   }
 
