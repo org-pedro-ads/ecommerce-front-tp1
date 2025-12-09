@@ -24,6 +24,8 @@ export class HistoryOrders implements OnInit {
 
   private userId = this.auth.idUser;
   protected orders = signal<Order[]>([]);
+  protected filteredOrders = signal<Order[]>([]);
+  protected isLoading = signal<boolean>(true);
 
   ngOnInit(): void {
     this.carregarPedidos();
@@ -41,21 +43,54 @@ export class HistoryOrders implements OnInit {
     this.historyOrderService.getOrdersByUser(userIdValue).subscribe({
       next: (data) => {
         this.orders.set(data);
+        this.filteredOrders.set(data);
+        this.isLoading.set(false);
       },
       error: (error) => {
         this.message.add('Erro ao buscar pedidos', 'error');
         console.error(error);
+        this.isLoading.set(false);
       }
     });
   }
   
-  // Helper para definir a classe CSS do status (opcional, ou fazer no HTML)
   getStatusClass(status: string): string {
     switch (status.toLowerCase()) {
       case 'pago': return 'status-paid';
       case 'pendente': return 'status-pending';
       case 'cancelado': return 'status-cancelled';
       default: return 'status-default';
+    }
+  }
+
+  filtrarPedidosStatus(event: Event) {
+    this.isLoading.set(true);
+
+    const status = (event.target as HTMLSelectElement).value;
+    const todos = this.orders();
+
+    if (status === 'todos' || status === '') {
+      this.isLoading.set(false);
+      this.filteredOrders.set(todos);
+    } else {
+      const filtrados = todos.filter(order => order.status.toLowerCase() === status.toLowerCase());
+      this.isLoading.set(false);
+      this.filteredOrders.set(filtrados);
+    }
+  }
+
+  filtrarPedidosBarraPesquisa(event: Event) {
+    const query = (event.target as HTMLInputElement).value.toLowerCase();
+    const todos = this.orders();
+
+    if (query === '') {
+      this.filteredOrders.set(todos);
+    } else {
+      const filtrados = todos.filter(order => 
+        order.id.toString().includes(query) ||
+        order.dataPedido.toString().toLowerCase().includes(query)
+      );
+      this.filteredOrders.set(filtrados);
     }
   }
 }

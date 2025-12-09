@@ -6,14 +6,15 @@
     <section class="filters-container">
       <div class="search-box">
         <lucide-icon name="search" class="icon-search"></lucide-icon>
-        <input type="text" placeholder="Buscar por número, data ou status..." />
+        <input type="text" placeholder="Buscar por número, data ou status..." (input)="filtrarPedidosBarraPesquisa($event)"/>
       </div>
 
       <div class="status-filter">
-        <select>
-          <option value="">Todos os status</option>
+        <select (change)="filtrarPedidosStatus($event)">
+          <option value="todos" selected>Todos os status</option>
           <option value="pago">Pago</option>
           <option value="pendente">Pendente</option>
+          <option value="cancelado">Cancelado</option>
         </select>
       </div>
     </section>
@@ -28,48 +29,54 @@
         <div class="col action-col">Ação</div>
       </div>
 
-      <div class="table-body">
-        @for (order of orders(); track order.id) {
-          <div class="table-row">
-            
-            <div class="col order-id">
-              <span class="mobile-label">Pedido:</span>
-              #{{ order.id }}
-            </div>
-            
-            <div class="col order-date">
-              <span class="mobile-label">Data:</span>
-              <lucide-icon name="calendar" class="icon-sm"></lucide-icon>
-              {{ order.dataPedido | date:'dd/MM/yyyy' }} 
-            </div>
-            
-            <div class="col order-total">
-              <span class="mobile-label">Total:</span>
-              R$ {{ order.valorTotal }}
-            </div>
-            
-            <div class="col order-status">
-              <span class="mobile-label">Status:</span>
-              <span class="status-badge" [class]="getStatusClass(order.status)">
-                {{ order.status }}
-              </span>
-            </div>
-            
-            <div class="col order-action action-col">
-              <button class="btn-details">
-                <lucide-icon name="eye" class="icon-sm"></lucide-icon>
-                Ver detalhes
-              </button>
-            </div>
+      @if(isLoading()) {
+        <div class="loading-state">
+          <lucide-icon name="loader" class="spinner"></lucide-icon>
+          <span>Carregando pedidos...</span>
+        </div>
+      } @else {
+        <div class="table-body">
+          @for (order of filteredOrders(); track order.id) {
+            <div class="table-row">
+              
+              <div class="col order-id">
+                <span class="mobile-label">Pedido:</span>
+                #{{ order.id }}
+              </div>
+              
+              <div class="col order-date">
+                <span class="mobile-label">Data:</span>
+                <lucide-icon name="calendar" class="icon-sm"></lucide-icon>
+                {{ order.dataPedido | date:'dd/MM/yyyy' }} 
+              </div>
+              
+              <div class="col order-total">
+                <span class="mobile-label">Total:</span>
+                R$ {{ order.valorTotal }}
+              </div>
+              
+              <div class="col order-status">
+                <span class="mobile-label">Status:</span>
+                <span class="status-badge" [class]="getStatusClass(order.status)">
+                  {{ order.status }}
+                </span>
+              </div>
+              
+              <div class="col order-action action-col">
+                <button class="btn-details">
+                  <lucide-icon name="eye" class="icon-sm"></lucide-icon>
+                  Ver detalhes
+                </button>
+              </div>
 
-          </div>
-        } @empty {
-          <div class="empty-state">
-            Nenhum pedido encontrado.
-          </div>
-        }
-      </div>
-
+            </div>
+          } @empty {
+            <div class="empty-state">
+              <p>Nenhum pedido encontrado.</p>
+            </div>
+          }
+        </div>
+      }
     </div>
   </div>
 </main>
