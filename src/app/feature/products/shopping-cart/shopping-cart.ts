@@ -50,7 +50,7 @@ export class ShoppingCart {
   
   total = computed(() => this.subtotal() + this.taxes());
   updateCartQuantity(productId: number, quantity: number) {
-    this.shoppingCart.addOrUpdateItem(1, productId, quantity)
+    this.shoppingCart.addOrUpdateItem(this.userId, productId, quantity)
     .subscribe({
       next: () => {
         this.messageService.add('Quantidade atualizada com sucesso.', 'success');
