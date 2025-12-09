@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core'; // Adicione OnInit
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
@@ -8,12 +8,13 @@ import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-login',
+  standalone: true, // Assumindo que é standalone pelo imports
   imports: [CommonModule, FormsModule, RouterLink, LucideAngularModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-
-export class Login {
+export class Login implements OnInit { // Implemente OnInit
+  
   private messageService = inject(MessageService);
   private auth = inject(AuthService);
   private router = inject(Router);
@@ -29,7 +30,15 @@ export class Login {
     userType: 'cliente' as 'admin' | 'operador' | 'cliente'
   };
 
-  feedback: { type: 'success' | 'error', message: string } | null = null;
+  // Verificação ao iniciar o componente
+  ngOnInit(): void {
+    // Se o AuthService já recuperou o ID do cookie no construtor dele,
+    // o idUser() será diferente de null.
+    if (this.auth.idUser()) {
+      console.log('Usuário já logado via cookie, redirecionando...');
+      this.router.navigate(['/products']);
+    }
+  }
 
   handleChange(field: string, value: string) {
     (this.formData as any)[field] = value;
@@ -42,23 +51,30 @@ export class Login {
     }
 
     if (this.isLogin) {
+      this.loading.set(true); // Trava o botão
       this.messageService.add("Tentando logar...", "info");
+      
       this.auth.login(this.formData.email, this.formData.password)
         .subscribe({
           next: (isLoggedIn) => {
             if (isLoggedIn) {
               this.messageService.add('Login realizado com sucesso!', 'success');
-              this.loading.set(false);
+              // O cookie já foi salvo dentro do auth.login via 'tap'
               this.router.navigate(['/products']); 
+            } else {
+               // Caso o login retorne false (usuário não encontrado)
+               this.loading.set(false);
             }
           },
           error: (err) => {
             console.error('Erro no login', err);
             this.messageService.add('Email ou senha incorretos.', 'error');
+            this.loading.set(false); // Destrava o botão em caso de erro
           }
         });
 
     } else {
+      // Lógica de registro...
       // this.handleRegister();
     }
   }
@@ -71,8 +87,6 @@ export class Login {
       confirmPassword: '',
       userType: 'cliente'
     };
-
-    this.feedback = null;
   }
 
   toggleMode() {
