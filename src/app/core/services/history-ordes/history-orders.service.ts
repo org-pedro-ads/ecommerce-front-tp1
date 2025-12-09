@@ -16,7 +16,7 @@ export class HistoryOrderService {
   getOrdersByUser(userId: number): Observable<Order[]> {
     this.logger.info(`[HistoryOrderService] getOrdersByUser - userId=${userId}`);
 
-    return this.http.get<Order[]>(`${this.apiUrl}/${userId}`).pipe(
+    return this.http.get<Order[]>(`${this.apiUrl}/${userId}/historico`).pipe(
       tap(orders => {
         this.logger.info(`[HistoryOrderService] getOrdersByUser - orders=${orders}`);
       }),

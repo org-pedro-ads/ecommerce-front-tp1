@@ -1,31 +1,77 @@
 <app-header></app-header>
 
-<div class="container">
-  <h1>Meus Pedidos</h1>
+<main class="main-content">
+  <div class="container">
+    
+    <section class="filters-container">
+      <div class="search-box">
+        <lucide-icon name="search" class="icon-search"></lucide-icon>
+        <input type="text" placeholder="Buscar por número, data ou status..." />
+      </div>
 
-  <section class="filters-container">
-    <div class="search-box">
-      <lucide-icon name="search" size="16" class="search-icon"></lucide-icon>
-      <input type="text" placeholder="Buscar pedidos..." />
-    </div>
+      <div class="status-filter">
+        <select>
+          <option value="">Todos os status</option>
+          <option value="pago">Pago</option>
+          <option value="pendente">Pendente</option>
+        </select>
+      </div>
+    </section>
 
-    <div class="results-bar">
-      <span class="results-count">
-        {{ listOrders().length }} pedidos encontrados
-      </span>
-    </div>
-  </section>
+    <div class="orders-table-container">
+      
+      <div class="table-header">
+        <div class="col">Número do Pedido</div>
+        <div class="col">Data</div>
+        <div class="col">Total</div>
+        <div class="col">Status</div>
+        <div class="col action-col">Ação</div>
+      </div>
 
-  <div class="orders">
-    @for (order of listOrders(); track order.id) {
-    <div class="order">
-      <h2>Pedido {{ order.id }}</h2>
-      <p>Data: {{ order.dataPedido }}</p>
-      <p>Status: {{ order.status }}</p>
+      <div class="table-body">
+        @for (order of orders(); track order.id) {
+          <div class="table-row">
+            
+            <div class="col order-id">
+              <span class="mobile-label">Pedido:</span>
+              #{{ order.id }}
+            </div>
+            
+            <div class="col order-date">
+              <span class="mobile-label">Data:</span>
+              <lucide-icon name="calendar" class="icon-sm"></lucide-icon>
+              {{ order.dataPedido | date:'dd/MM/yyyy' }} 
+            </div>
+            
+            <div class="col order-total">
+              <span class="mobile-label">Total:</span>
+              R$ {{ order.valorTotal }}
+            </div>
+            
+            <div class="col order-status">
+              <span class="mobile-label">Status:</span>
+              <span class="status-badge" [class]="getStatusClass(order.status)">
+                {{ order.status }}
+              </span>
+            </div>
+            
+            <div class="col order-action action-col">
+              <button class="btn-details">
+                <lucide-icon name="eye" class="icon-sm"></lucide-icon>
+                Ver detalhes
+              </button>
+            </div>
+
+          </div>
+        } @empty {
+          <div class="empty-state">
+            Nenhum pedido encontrado.
+          </div>
+        }
+      </div>
+
     </div>
-    }
   </div>
-
-</div>
+</main>
 
 <app-footer></app-footer>
