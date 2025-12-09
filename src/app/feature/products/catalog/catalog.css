@@ -124,7 +124,15 @@
   flex-shrink: 0;          /* Impede o ícone de ser "esmagado" */
 }
 
-
+.nav-section-title {
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  margin: 10px;
+  color: #4b5563;
+  font-weight: bold;
+  cursor: default;
+}
 
 .search-box:focus-within {
   border-color: #0066ff;   /* Muda a cor da borda quando clica no input */
