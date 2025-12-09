@@ -1,4 +1,4 @@
-import { Component, inject, signal, OnInit } from '@angular/core'; // Adicione OnInit
+import { Component, inject, signal, OnInit, ViewChild } from '@angular/core'; // Adicione OnInit
 import { Header } from '../../../core/header/header'
 import { Footer } from '../../../core/footer/footer';
 import { LucideAngularModule, Route } from 'lucide-angular';
@@ -8,14 +8,17 @@ import { AuthService } from '../../auth/services/auth.service';
 import { HistoryOrderService } from '../../../core/services/history-ordes/history-orders.service';
 import { Order } from '../../../models/order';
 import { Router } from '@angular/router';
+import { ModalHistoryOrder } from '../modal-history-order/modal-history-order';
 
 @Component({
   selector: 'app-history-orders',
-  imports: [Header, Footer, LucideAngularModule, DatePipe],
+  imports: [Header, Footer, LucideAngularModule, DatePipe, ModalHistoryOrder],
   templateUrl: './history-orders.html',
   styleUrl: './history-orders.css',
 })
 export class HistoryOrders implements OnInit {
+
+  @ViewChild(ModalHistoryOrder) modal!: ModalHistoryOrder;
 
   private message = inject(MessageService);
   private auth = inject(AuthService);
@@ -91,6 +94,13 @@ export class HistoryOrders implements OnInit {
         order.dataPedido.toString().toLowerCase().includes(query)
       );
       this.filteredOrders.set(filtrados);
+    }
+  }
+
+  abrirModalDetalhes(order: Order) {
+    if (this.modal) {
+      this.modal.setOrder = order;
+      this.modal.openModal();
     }
   }
 }

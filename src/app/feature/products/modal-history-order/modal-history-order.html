@@ -1,0 +1,52 @@
+@if (modalIsOpen && getOrder) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      
+      <div class="modal-header">
+        <h2>Detalhes do Pedido</h2>
+        <button class="btn-close" (click)="closeModal()">
+          <lucide-icon name="x" size="24"></lucide-icon>
+        </button>
+      </div>
+
+      <div class="order-info-bar">
+        <div class="info-text">
+          <span class="order-id">#ORD-{{ getOrder.id }}</span>
+          <span class="order-date">{{ getOrder.dataPedido | date:'dd/MM/yyyy' }}</span>
+        </div>
+        
+        <div class="status-badge" [class]="getStatusClass(getOrder.status)">
+          {{ getOrder.status }}
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="modal-body">
+        <h3>Itens do Pedido</h3>
+
+        <div class="items-list">
+          @for (item of getOrder.itens; track $index) {
+            <div class="item-card">
+              <div class="item-details">
+                <span class="item-name">{{ item.produto.nome }}</span>
+                <span class="item-qty">Quantidade: {{ item.quantidade }}</span>
+              </div>
+              <div class="item-price">
+                {{ item.preco | currency:'BRL' }}
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="modal-footer">
+        <span class="label-total">Total</span>
+        <span class="value-total">{{ getOrder.valorTotal | currency:'BRL' }}</span>
+      </div>
+
+    </div>
+  </div>
+}

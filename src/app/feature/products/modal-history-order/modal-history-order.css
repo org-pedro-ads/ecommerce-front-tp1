@@ -1,0 +1,192 @@
+/* Fundo Escuro (Overlay) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Escurece o fundo */
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Container do Modal */
+.modal-container {
+  background-color: white;
+  width: 100%;
+  max-width: 600px; /* Largura máxima do modal */
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out;
+  max-height: 90vh; /* Se for muito longo, scrolla */
+  overflow-y: auto;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Cabeçalho */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #1f2937;
+  font-weight: 700;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.btn-close:hover {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+/* Barra de Info (ID, Data, Status) */
+.order-info-bar {
+  padding: 0 1.5rem 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.order-id {
+  font-size: 0.95rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.order-date {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* Badges de Status (Reutilizando estilo) */
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 99px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-paid { background-color: #dcfce7; color: #166534; }
+.status-pending { background-color: #fef9c3; color: #854d0e; }
+.status-cancelled { background-color: #fee2e2; color: #991b1b; }
+.status-default { background-color: #e5e7eb; color: #374151; }
+
+/* Divisor */
+.divider {
+  height: 1px;
+  background-color: #e5e7eb;
+  width: 100%;
+}
+
+/* Corpo do Modal */
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-body h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+/* Lista de Itens */
+.items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9fafb; /* Fundo cinza bem claro para os itens */
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #f3f4f6;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.item-name {
+  font-weight: 500;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.item-qty {
+  font-size: 0.85rem;
+  color: #6b7280; /* Cor azulada/cinza conforme print */
+}
+
+.item-price {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Rodapé */
+.modal-footer {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+}
+
+.label-total {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.value-total {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

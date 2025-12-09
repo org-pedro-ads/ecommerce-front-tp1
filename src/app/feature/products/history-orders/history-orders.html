@@ -41,7 +41,7 @@
               
               <div class="col order-id">
                 <span class="mobile-label">Pedido:</span>
-                #{{ order.id }}
+                #ORD-{{ order.id }}
               </div>
               
               <div class="col order-date">
@@ -63,7 +63,7 @@
               </div>
               
               <div class="col order-action action-col">
-                <button class="btn-details">
+                <button class="btn-details" (click)="abrirModalDetalhes(order)">
                   <lucide-icon name="eye" class="icon-sm"></lucide-icon>
                   Ver detalhes
                 </button>
@@ -80,5 +80,7 @@
     </div>
   </div>
 </main>
+
+<app-modal-history-order></app-modal-history-order>
 
 <app-footer></app-footer>
