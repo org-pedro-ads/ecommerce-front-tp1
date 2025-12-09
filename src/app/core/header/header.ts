@@ -27,23 +27,23 @@ export class Header {
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  private idUser = this.authService.idUser 
-  
-  readonly IconUser = LucideUser; 
+  private idUser = this.authService.idUser
+
+  readonly IconUser = LucideUser;
   readonly IconCart = ShoppingCart;
   readonly IconLogout = LogOut;
-  
+
   constructor() {
     this.logoUrl = 'default-logo-url';
     this.nomeEcommerce = 'Default Ecommerce Name';
     this.descEcommerce = 'Default Ecommerce Description';
   }
 
-  private idUser$ = toObservable(this.idUser);
+  private idUser$ = toObservable(this.authService.idUser);
   private cartService = inject(ShoppingCartService);
   private cart$ = this.cartService.cart;
   private qtdeCart = computed(() => this.cart$()?.itens.length || 0);
-  
+
   private userData = toSignal(
     this.idUser$.pipe(
       switchMap((id): Observable<User | null> => {
@@ -54,9 +54,11 @@ export class Header {
       })
     )
   );
-  
+
+  public user = this.userService.user;
+
   public userName = computed(() => {
-    return this.userData() ? this.userData()!.nome : "Fazer login";
+    return this.user() ? this.user()!.nome : "Fazer login";
   });
 
   userButtonClick() {

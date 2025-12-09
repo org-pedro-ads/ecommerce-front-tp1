@@ -1,7 +1,6 @@
 <div class="login-container">
   <div class="login-box">
 
-    <!-- ICON HEADER -->
     <div class="icon-header">
       <div class="icon-circle">
         E
@@ -11,25 +10,20 @@
       <p>Entre com suas credenciais</p>
     </div>
 
-    <!-- CARD -->
     <div class="login-card">
-      <form (ngSubmit)="handleSubmit()">
+      <form (ngSubmit)="handleSubmit()" autocomplete="off">
 
-        <!-- EMAIL -->
         <div class="form-group">
           <label>E-mail</label>
           <input type="email" placeholder="exemplo@email.com" [(ngModel)]="formData.email" name="email" required />
         </div>
 
-        <!-- SENHA -->
         <div class="form-group">
           <label>Senha</label>
           <input type="password" placeholder="Mínimo 6 caracteres" [(ngModel)]="formData.password" name="password" required />
         </div>
 
-        <!-- BUTTONS -->
         <div class="buttons">
-          <!-- AQUI ESTÁ O BOTÃO AZUL -->
           <button type="submit" class="btn-primary">
             <i class="lucide lucide-log-in"></i> Entrar
           </button>

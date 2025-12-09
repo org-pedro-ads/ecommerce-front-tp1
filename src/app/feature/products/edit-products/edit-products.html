@@ -12,11 +12,10 @@
     <h1>Gerenciar Produtos</h1>
   </div>
 
-  <form class="product-card" [formGroup]="form" (ngSubmit)="save()">
+  <form class="product-card" [formGroup]="form" (ngSubmit)="save()" autocomplete="off">
 
     <h2>Editar Produto</h2>
 
-    <!-- Nome -->
     <div class="form-group">
       <label>Nome do Produto *</label>
       <input type="text" formControlName="nome" placeholder="Digite o nome do produto">
@@ -25,7 +24,6 @@
       }
     </div>
 
-    <!-- Categoria -->
     <div class="form-group">
       <label>Categoria *</label>
       <select formControlName="categoria">
@@ -42,7 +40,6 @@
       }
     </div>
 
-    <!-- Preço -->
     <div class="form-group">
       <label>Preço (R$) *</label>
       <input type="number" formControlName="preco" placeholder="0.00">
@@ -54,7 +51,6 @@
       }
     </div>
 
-    <!-- Estoque -->
     <div class="form-group">
       <label>Quantidade em Estoque *</label>
       <input type="number" formControlName="quantidadeEstoque" placeholder="0">
@@ -66,7 +62,6 @@
       }
     </div>
 
-    <!-- Descrição -->
     <div class="form-group">
       <label>Descrição *</label>
       <textarea formControlName="descricao" placeholder="Digite uma descrição detalhada do produto"></textarea>
@@ -75,14 +70,12 @@
       }
     </div>
 
-    <!-- Características -->
     <div class="form-group">
       <label>Características</label>
       <input type="text" formControlName="caracteristicas" placeholder="Ex: Bluetooth, USB-C, Garantia 1 ano">
       <small>Digite as características separadas por vírgula</small>
     </div>
 
-    <!-- Botões -->
     <div class="buttons">
       <button class="btn-primary" type="submit" [disabled]="isSubmitting()">
         <i class="fas fa-check"></i> Atualizar

@@ -4,6 +4,7 @@ import { ProductsService, Produto } from '../products.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Header } from '../../../core/header/header';
 import { Footer } from '../../../core/footer/footer';
+import { MessageService } from '../../../core/services/message/message.service';
 
 @Component({
   selector: 'app-edit-products',
@@ -20,6 +21,7 @@ export class EditProducts {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private messageService = inject(MessageService);
 
   form: FormGroup = this.fb.nonNullable.group({
     nome: new FormControl('', Validators.required),
@@ -45,7 +47,6 @@ export class EditProducts {
     this.productId = Number(this.route.snapshot.paramMap.get('id'));
     this.productsService.buscarPorId(this.productId).subscribe({
       next: (produto) => {
-        // Preenche o formulário com os valores do produto
         this.form.patchValue({
           nome: produto.nome,
           categoria: Object.keys(this.categoriaMap).find(
@@ -86,10 +87,11 @@ export class EditProducts {
       next: () => {
         this.isSubmitting.set(false);
         this.submitted.set(false);
+        this.messageService.add('Produto atualizado com sucesso.', 'success');
         this.router.navigate(['/products/product-management/list']);
       },
       error: (err) => {
-        console.error('Erro ao atualizar produto:', err);
+        this.messageService.add('Erro ao atualizar o produto.', 'error');
         this.isSubmitting.set(false);
       }
     });

@@ -4,6 +4,7 @@ import { ProductsService, Produto } from '../products.service';
 import { Header } from '../../../core/header/header';
 import { Footer } from '../../../core/footer/footer';
 import { Router } from '@angular/router';
+import { MessageService } from '../../../core/services/message/message.service';
 
 @Component({
   selector: 'app-register-products',
@@ -16,7 +17,8 @@ export class RegisterProducts {
   submitted = signal(false);
   private router = inject(Router);
   private productsService = inject(ProductsService);
-  private fb = inject(FormBuilder)
+  private fb = inject(FormBuilder);
+  private messageService = inject(MessageService);
 
   form: FormGroup = this.fb.nonNullable.group({
     nome: new FormControl('', Validators.required),
@@ -57,7 +59,7 @@ export class RegisterProducts {
 
     this.productsService.cadastrar(produto).subscribe({
       next: (res) => {
-        console.log('Produto cadastrado com sucesso:', res);
+        this.messageService.add('Produto cadastrado com sucesso.', 'success');
 
         this.form.reset({
           categoria: 'Eletrônicos',
@@ -71,7 +73,7 @@ export class RegisterProducts {
         this.router.navigate(['/products/product-management/list']);
       },
       error: (err) => {
-        console.error('Erro ao cadastrar produto:', err);
+        this.messageService.add('Error ao cadastrar produto.', 'error');
         this.isSubmitting.set(false);
       }
     });

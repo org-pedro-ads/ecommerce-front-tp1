@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { LoggerService } from '../logger/logger.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, of, throwError } from 'rxjs';
@@ -11,6 +11,7 @@ export class UserService {
   
   private logger = inject(LoggerService);
   private http = inject(HttpClient);
+  user = signal<User | null>(null);
 
   private apiUrl = 'https://ecommerce-api-tp1.onrender.com/api/usuarios';
   
@@ -31,8 +32,6 @@ export class UserService {
   }
 
   updateUser(id: number, user: Partial<User>): Observable<User> {
-    this.logger.info(`[UserService] updateUser - Atualizando usuário com ID: ${id}`);
-    this.logger.info('[UserService] updateUser - Dados atualizados do usuário:', user);
     return this.http.put<User>(`${this.apiUrl}/${id}`, user);
   }
 
