@@ -54,17 +54,27 @@
 
     <section class="filters-container">
 
+      <!-- ATUALIZADO: Input de busca conectado ao signal -->
       <div class="search-box">
         <lucide-icon name="search" size="16" class="search-icon"></lucide-icon>
-        <input type="text" placeholder="Buscar produtos..." />
+        <input 
+          type="text" 
+          placeholder="Buscar produtos..." 
+          [ngModel]="termoBusca()"
+          (ngModelChange)="onBuscaChange($event)"
+        />
       </div>
 
       <div class="category-box">
-        <select [ngModel]="categoriaSelecionada()" (ngModelChange)="onCategoriaChange($event)" class="category-select">
+        <select 
+          [ngModel]="categoriaSelecionada()" 
+          (ngModelChange)="onCategoriaChange($event)" 
+          class="category-select"
+        >
           <option value="" disabled>Selecione uma categoria...</option>
           <option value="all">Todas as categorias</option>
           @for (categoria of listCategories(); track categoria) {
-          <option value="{{ categoria }}">{{ categoria }}</option>
+            <option [value]="categoria">{{ categoria }}</option>
           }
         </select>
       </div>
@@ -76,11 +86,19 @@
 
         <div class="sort-box">
           <select [ngModel]="ordenarPor()" (ngModelChange)="ordenarPor.set($event)">
-            <option>Ordenar por: Nome</option>
-            <option>Ordenar por: Preço Menor</option>
-            <option>Ordenar por: Preço Maior</option>
+            <option value="nome">Ordenar por: Nome</option>
+            <option value="preco-menor">Ordenar por: Preço Menor</option>
+            <option value="preco-maior">Ordenar por: Preço Maior</option>
           </select>
         </div>
+
+        <!-- NOVO: Botão para limpar filtros -->
+        @if (termoBusca() || categoriaSelecionada()) {
+          <button class="btn-clear-filters" (click)="limparFiltros()">
+            <lucide-icon name="x" size="16"></lucide-icon>
+            Limpar Filtros
+          </button>
+        }
       </div>
 
     </section>
@@ -95,7 +113,10 @@
 
       } @else if (listProducts().length === 0) {
       <div class="state-container">
-        <p>Nenhum produto disponível.</p>
+        <p>Nenhum produto encontrado com os filtros aplicados.</p>
+        <button class="btn-secondary" (click)="limparFiltros()">
+          Limpar Filtros
+        </button>
       </div>
 
       } @else {
