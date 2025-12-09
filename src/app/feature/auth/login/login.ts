@@ -54,7 +54,7 @@ export class Login {
           },
           error: (err) => {
             console.error('Erro no login', err);
-            this.messageService.add('Erro ao tentar fazer login.', 'error');
+            this.messageService.add('Email ou senha incorretos.', 'error');
           }
         });
 

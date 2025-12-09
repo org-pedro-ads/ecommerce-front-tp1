@@ -19,7 +19,7 @@ export class MessageService {
       if (this.messages.length > 0) {
         this.remove(0);
       }
-    }, 5000);
+    }, 4000);
   }
 
   remove(index: number) {
