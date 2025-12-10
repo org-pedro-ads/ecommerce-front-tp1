@@ -71,6 +71,8 @@ export class Header {
 
   logout() {
     this.authService.idUser.set(null);
+    this.authService.isAdmin.set(false);
+    document.cookie = "idUser=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     this.router.navigate(['/']);
   }
 
