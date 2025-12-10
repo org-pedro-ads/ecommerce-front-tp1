@@ -11,8 +11,16 @@
 
     <h3 class="product-title">{{ produto.nome }}</h3>
 
-    <div class="product-tag">
-      <lucide-icon name="tag" size="12"></lucide-icon> <span>{{ produto.categoria }}</span>
+    <div class="tags-row">
+        <span class="tag-category">
+          <lucide-icon name="tag" size="14"></lucide-icon> {{ produto.categoria }}
+        </span>
+
+        @if(produto.quantidadeEstoque > 0) {
+        <span class="tag-stock">Em estoque</span>
+        } @else {
+        <span class="tag-stock" style="background-color: #fee2e2; color: #991b1b;">Esgotado</span>
+        }
     </div>
 
     <p class="product-description">

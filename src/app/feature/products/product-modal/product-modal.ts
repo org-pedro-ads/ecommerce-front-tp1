@@ -45,6 +45,14 @@ export class ProductModalComponent {
       return;
     }
 
+    console.log('Estoque atual:', this.produto.quantidadeEstoque);
+    console.log('prouduto compelot: ', this.produto);
+
+    if (this.produto.quantidadeEstoque === 0) {
+      this.message.add('Produto sem estoque', 'error');
+      return;
+    }
+
     this.cartService.addOrUpdateItem(userId, this.produto.id, 1).subscribe({
       next: () => {
         this.message.add('Produto adicionado ao carrinho!', 'success');

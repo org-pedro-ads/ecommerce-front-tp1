@@ -53,7 +53,7 @@
           <span>{{ estoque() }} unidades em estoque</span>
         </div>
 
-        <button class="btn-add-cart" [disabled]="estoque() === 0" (click)="addCard()">
+        <button class="btn-add-cart" (click)="addCard()">
           <lucide-icon name="shopping-cart" size="20"></lucide-icon>
           Adicionar ao Carrinho
         </button>

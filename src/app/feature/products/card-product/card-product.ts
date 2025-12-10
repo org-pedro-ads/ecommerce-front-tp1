@@ -35,6 +35,11 @@ export class CardProduct {
       this.message.add('Você precisa estar logado para adicionar produtos ao carrinho', 'error');
       return;
     }
+    
+    if (this.produto.quantidadeEstoque === 0) {
+      this.message.add('Produto sem estoque', 'error');
+      return;
+    }
 
     this.cartService.addOrUpdateItem(userId, this.produto.id, 1).subscribe({
       next: () => {
