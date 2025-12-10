@@ -45,9 +45,10 @@ export class HistoryOrders implements OnInit {
     }
     
     this.historyOrderService.getOrdersByUser(userIdValue).subscribe({
-      next: (data) => {
-        this.orders.set(data);
-        this.filteredOrders.set(data);
+      next: (data: Order[]) => {
+        const filtrados = data.filter(order => order.itens.length > 0);
+        this.orders.set(filtrados);
+        this.filteredOrders.set(filtrados);
         this.isLoading.set(false);
       },
       error: (error) => {
@@ -77,7 +78,7 @@ export class HistoryOrders implements OnInit {
       this.isLoading.set(false);
       this.filteredOrders.set(todos);
     } else {
-      const filtrados = todos.filter(order => order.status.toLowerCase() === status.toLowerCase());
+      let filtrados = todos.filter(order => order.status.toLowerCase() === status.toLowerCase());
       this.isLoading.set(false);
       this.filteredOrders.set(filtrados);
     }

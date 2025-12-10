@@ -25,7 +25,9 @@ export class ShoppingCartService {
       .pipe(
         map(data => OrderMapper.fromJson(data)),
         tap(cart => {
-          this._cart.set(cart); 
+          if(cart.itens.length > 0) {
+            this._cart.set(cart); 
+          }
         }),
         catchError(error => {
           this.logger.error(
