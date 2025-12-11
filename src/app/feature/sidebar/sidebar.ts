@@ -27,7 +27,6 @@ export class SidebarComponent {
     }
   }
 
-  // ✅ NOVO MÉTODO: Verifica se a rota atual contém o caminho passado
   isActive(route: string): boolean {
     return this.router.url.includes(route);
   }

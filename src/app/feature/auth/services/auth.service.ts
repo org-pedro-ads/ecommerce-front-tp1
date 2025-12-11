@@ -82,7 +82,6 @@ export class AuthService {
       date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
       expires = "; expires=" + date.toUTCString();
     }
-    // path=/ garante que o cookie funcione em todas as rotas
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
   }
 
